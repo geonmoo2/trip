@@ -1,41 +1,47 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql-container
+  new-mysql:
+    image: mysql:8.0
+    container_name: new-mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: samsungdb
+      MYSQL_DATABASE: trip
+      MYSQL_USER: trip_user
+      MYSQL_PASSWORD: trip_password
     ports:
       - "3306:3306"
+    networks:
+      - new-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - ${MYSQL_VOLUME:-/home/ec2-user/actions-runner/_work/trip/trip/mysql-data}:/var/lib/mysql  # 환경 변수를 처리
-    networks:
-      - git-actions-auto_my-network
-    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
 
-  app:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: new-spring
+    depends_on:
+      new-mysql:
+        condition: service_healthy
     ports:
       - "8080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/samsungdb
+      SPRING_DATASOURCE_URL: jdbc:mysql://new-mysql:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
-    depends_on:
-      - mysql
     networks:
-      - git-actions-auto_my-network
-    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
-
-volumes:
-  mysql-data:
-    driver: local  # 로컬 볼륨 사용
+      - new-network
 
 networks:
-  git-actions-auto_my-network:
-    driver: bridge  # Docker 네트워크 사용
+  new-network:
+    driver: bridge
+
+volumes:
+  mysql-data:  # MySQL 데이터 볼륨
+    driver: local
