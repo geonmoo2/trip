@@ -17,7 +17,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /home/ec2-user/actions-runner/_work/trip/trip/mysql-data:/var/lib/mysql  # 로컬 디렉토리와 마운트
+      - mysql-data:/var/lib/mysql  # 익명 볼륨
 
   backend:
     build:
