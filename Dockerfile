@@ -6,6 +6,7 @@ WORKDIR /app
 
 # 프로젝트 복사 및 Gradle 빌드
 COPY . /app
+RUN chmod +x /app/gradlew
 RUN ./gradlew clean build -x test --no-daemon
 
 # 빌드 결과를 런타임 환경에 복사
