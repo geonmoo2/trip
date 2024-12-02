@@ -8,7 +8,7 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/trip
   VERSION: ${{ github.sha }}
   NAME: go_cicd
-  DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/git-actions-auto/git-actions-auto/repo/docker-compose.yml
+  DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/trip/trip/repo/docker-compose.yml
 
 jobs:
   build:
@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          repository: geonmoo2/trip
 
       - name: Set up docker buildx
         id: buildx
@@ -50,10 +52,8 @@ jobs:
     runs-on: [ self-hosted, label-go ]
     steps:
       - uses: actions/checkout@v3
-        name: Checkout code
         with:
-          repository: ${{ github.repository }}
-          path: repo
+          repository: geonmoo2/trip
 
       - name: Print working directory
         run: pwd
