@@ -1,0 +1,77 @@
+footer{
+
+border-top: 3px solid rgba(98, 99, 99,0.3);
+height:200px;
+
+}
+.main-footer{
+
+
+    width: 1200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+
+}
+.main-footer>.main-footer-text{
+    
+    
+    margin-left: 50px;
+    margin-right: 100px;
+
+}
+.logo-header-left {
+
+    width: 100px;
+    height: 100px;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    background-image: url('/img/KakaoTalk_20240820_203930944.png');
+    background-size: cover;
+
+}
+.footer-logo{
+
+    margin-left:170px;
+    margin-top: -60px;
+}
+.main-footer>.main-footer-text>p{
+
+    color: rgba(98, 99, 99, 0.7);
+    font-size: 10px;
+    font-weight: 500;
+
+}
+.footer-logo{
+
+    width: 84px;
+    height: 50px;
+    
+
+}
+@media (max-width: 768px) {
+
+    .main-footer{
+        width:760px;
+
+    }
+    .main-footer-text{
+        width: 400px;
+
+    }
+    .logo-header-left{
+
+        margin-left:-80px;
+
+    }
+
+    .main-footer-text > p {
+        font-size: 10px; /* 미디어 쿼리 글자 크기 */
+        color: red; /* 색상 변경으로 확인 */
+    }
+
+
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/find-username.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="username">
+                <h1>아이디 찾기</h1>
+                <form th:action="@{/user/find_username}" method="post">
+                    <label for="realname">이름:</label>
+                    <input type="text" id="realname" name="realname" required><br>
+
+                    <label for="birth">생년월일 (YYYY-MM-DD):</label>
+                    <input type="date" id="birth" name="birth" maxlength="10" required><br>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <button type="submit">아이디 찾기</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <!--footer-->
+    <script>
+        // 생년월일 입력 필드에 '-' 고정시키기
+        $(document).ready(function() {
+            $('#birth').on('input', function() {
+                let value = $(this).val().replace(/[^0-9]/g, '');
+                if (value.length >= 5) {
+                    value = value.substring(0, 4) + '-' + value.substring(4, 6) + '-' + value.substring(6, 8);
+                } else if (value.length >= 3) {
+                    value = value.substring(0, 4) + '-' + value.substring(4, 6);
+                } else if (value.length >= 1) {
+                    value = value.substring(0, 4);
+                }
+                $(this).val(value);
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>

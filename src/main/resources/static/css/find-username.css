@@ -1,0 +1,138 @@
+@charset "utf-8";
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+
+.wrapper > main {
+
+    margin: 0;
+    padding: 0;
+    height: 900px;
+
+    background-color: rgb(255, 255, 255, 0.7);
+
+
+    background-size: auto 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+}
+
+.wrapper > main > section {
+    margin: auto;
+
+
+}
+
+/* section.login */
+.wrapper > main > section > .username {
+    width: 450px;
+    height: 660px;
+    margin: auto;
+
+    border: 3px solid rgba(98, 99, 99, 0.3);
+    padding: 60px 68px 40px;
+    border-radius: 10px;
+    color: rgb(7, 7, 82);
+    background-color: rgb(255, 255, 255, 0.7);
+
+
+}
+
+.username h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.username form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.username label {
+    font-size: 14px;
+    color: #555;
+}
+
+.username input[type="text"],
+.username input[type="date"],
+.username input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.username button {
+    width: 100%;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.username button:hover {
+    background-color: rgba(20, 167, 0, 0.909);
+}
+
+
+
+
+
+
+
+
+
+
+
+.wrapper > main > section > .login > .login-footer {
+    font-size: 0.7rem;
+    z-index: 2;
+}
+
+.wrapper > main > section > .login > .login-footer > p {
+    font-size: 1rem;
+}
+
+.wrapper > main > section > .login > .login-footer > a {
+    text-decoration: none;
+}
+
+.wrapper > main > section > .login > .login-footer > a:hover {
+    text-decoration: underline;
+}
+
+.wrapper > main > section > .login > .login-bg {
+
+}
+

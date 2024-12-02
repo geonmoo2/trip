@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아이디 찾기 결과</title>
+    <script type="text/javascript">
+        function showAlert(message) {
+            alert(message);
+            window.location.href = "/user/find_username"; // 입력 폼으로 다시 이동
+        }
+    </script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/find-username-result.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="login">
+                <h1>아이디 찾기 결과</h1>
+                <p th:if="${message}" th:text="${message}"></p>
+                <script th:if="${errorMessage}" th:inline="javascript">
+                    showAlert([[${errorMessage}]]);
+                </script>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</div>
+</body>
+</html>

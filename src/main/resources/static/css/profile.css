@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+/* main */
+.wrapper > main {
+
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgb(255, 255, 255, 0.7);
+
+
+    background-size: auto 100%;
+    display: flex;
+    margin-top: -190px;
+}
+section{
+    margin: auto;
+}
+.wrapper > main > section > .adult_join {
+
+    width: 800px;
+    height: 650px;
+    margin: auto;
+
+
+    padding: 60px 68px 40px;
+    border-radius: 10px;
+    color: rgb(7, 7, 82);
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.adult_join .container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.adult_join .container h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.adult_join .container p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.adult_join .container p strong {
+    color: #333;
+    width: 30%;
+}
+
+.adult_join .container p span {
+    color: #333;
+    width: 70%;
+}
+
+.adult_join .container .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+    margin-right: 30px;
+    background-color: green;
+}
+#primary{
+    margin-left: 280px;
+
+}
+.adult_join .container .btn-secondary {
+    background-color: green;
+}
+
+.adult_join .container .btn:hover {
+    background-color: #0056b3;
+}
+
+.adult_join .container .btn-secondary:hover {
+    background-color: #5a6268;
+}

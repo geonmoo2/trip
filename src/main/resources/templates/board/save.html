@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라이온즈파크</title>
+
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!--css-->
+    <link rel="stylesheet" href="/css/save.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+
+    <!-- 구글 아이콘  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="section-main">
+                <div class="section-left"></div>
+                <div class="section-mid">
+                    <div class="section-mid-form">
+                        <form id="boardForm" action="/board/save" method="post" enctype="multipart/form-data">
+                            <a href="/fan/board/fanpaging"><span class="material-symbols-outlined">close</span></a>
+                            글쓴이: <input type="text" name="boardWriter" th:value="${username}" readonly> <br>
+                            게시글 비밀번호 : <input type="text" name="boardPass"> <br>
+                            제목: <input type="text" name="boardTitle"> <br>
+                            내용: <textarea name="boardContents" cols="70" rows="30"></textarea> <br>
+                            <input type="submit" value="글작성">
+                        </form>
+                    </div>
+
+                </div>
+                <div class="section-right"></div>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <!--//footer-->
+</div>
+<script>
+    /*header*/
+    document.querySelectorAll('.menu > li').forEach(menuItem => {
+      menuItem.addEventListener('mouseenter', () => {
+        document.querySelector('.hideback').classList.add('show-hideback');
+      });
+
+      menuItem.addEventListener('mouseleave', () => {
+        document.querySelector('.hideback').classList.remove('show-hideback');
+      });
+    });
+    /*//header*/
+
+    document.getElementById('boardForm').addEventListener('submit', function(event) {
+    const boardTitle = document.querySelector('input[name="boardTitle"]').value;
+    if (!boardTitle) {
+        alert('제목을 입력해주세요.');
+        event.preventDefault();
+    }
+    });
+
+
+
+</script>
+</body>
+
+</html>

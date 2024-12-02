@@ -1,0 +1,351 @@
+/* Reset and global styles */
+* {
+    margin: 0;
+    padding: 0;
+    color: rgb(71, 70, 70);
+}
+
+body {
+    color: rgb(71, 70, 70);
+}
+
+/* Container for centering */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Top Section */
+.top {
+     width: 1200px;
+     height: 180px;
+     border: 0px solid black;
+     margin: 0 auto;
+}
+
+.top > h1 {
+    font-size: 70px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+/* Star Rating Styles */
+.star, .red-star {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.star.filled, .red-star.filled {
+    color: gold;
+}
+
+.star.half-filled::before, .red-star.half-filled::before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: gold;
+}
+#comment{
+
+    margin-top:20px;
+
+}
+.main1-text > h1{
+
+    margin-top: 15px;
+    margin-left: 20px;
+
+}
+.top-a1{
+
+    margin-top: 10px;
+}
+.top-a1 >a{
+
+    text-decoration: none;
+
+}
+
+
+/* Main1 Section */
+.main1 {
+    width: 1200px;
+    height: 512px;
+    margin: 0 auto;
+
+    display: flex;
+    border: 0px solid black;
+    position: relative;
+}
+
+.main1-text {
+
+    width: 370px;
+    height: 200px;
+    /* border: 3px solid rgba(140, 137, 137, 0.623); */
+    color: rgb(71, 70, 70);
+    margin-right: 40px;
+    margin-left: 0px;
+    border-radius: 15px;
+
+    box-shadow:
+        7px 0 7px -5px rgba(0, 0, 0, 0.5),  /* 오른쪽 */
+        -5px 0 7px -5px rgba(0, 0, 0, 0.5), /* 왼쪽 */
+        0 5px 7px -5px rgba(0, 0, 0, 0.5),  /* 아래쪽 */
+        0 -5px 7px -5px rgba(0, 0, 0, 0.5); /* 위쪽 */
+}
+
+.main1-text > h1 {
+    margin-bottom: 20px;
+}
+
+.main1-text > h3 {
+    margin: 5px 0 0 20px;
+}
+
+/* Slides Section */
+.slides {
+    flex: 2; /* 유연한 너비 */
+    overflow: hidden;
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    height: 480px;
+    justify-content: center; /* 이미지가 컨테이너 안에 정렬 */
+    align-items: center;
+
+}
+
+.slides > img {
+    flex-shrink: 0; /* 이미지 크기가 줄어들지 않도록 설정 */
+    width: 790px; /* 이미지 너비가 컨테이너에 맞춰 조정 */
+    height: 480px; /* 원본 비율 유지 */
+    object-fit: cover; /* 이미지 비율 유지 */
+    border-radius:30px;
+}
+
+/* Main2 Section */
+.main2 {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    border-top: 4px solid rgba(19, 163, 3, 0.902);
+    border-bottom: 4px solid rgba(19, 163, 3, 0.902);
+    margin-top:100px;
+}
+
+.main2-text {
+    flex: 2;
+    padding: 20px;
+}
+
+.main2-text > h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.main2-text > h3, .main2-text > p, .main2-text > a {
+    margin-left: 30px;
+    margin-bottom: 15px;
+}
+
+/* Navigation Buttons */
+#btn1, #btn2 {
+
+    font-size: 70px;
+    color: rgb(255, 255, 255);
+    z-index: 10;
+    cursor: pointer;
+}
+
+#btn1 {
+    position:absolute;
+    z-index:99;
+    margin-left: 420px;
+    margin-top:190px;
+    z-index:99;
+}
+
+#btn2 {
+    position:absolute;
+
+    margin-left: 1120px;
+    margin-top: 190px;
+    z-index:99;
+}
+
+/* Pagination */
+
+.paginate .circle.selected {
+    background: red;
+}
+/* Review Section */
+.review-section {
+    max-width: 1200px; /* 반응형 크기 */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom:150px;
+}
+
+.review-section .review-form {
+    margin-bottom: 20px;
+}
+.review-form{
+
+    margin-top:50px;
+
+}
+
+.review-section label {
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.review-section textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.review-section button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    /* 오른쪽 정렬 */
+    display: block;
+    margin-left: auto;
+    margin-right: 20;
+    margin-top: 20px;
+}
+
+.review-section button:hover {
+    background-color: #45a049;
+}
+
+.review-section .reviews-list {
+    margin-top: 20px;
+}
+
+.review-section .reviews-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.review-section .reviews-list div {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.review-section .reviews-list p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+.review-section .reviews-list span {
+    font-weight: bold;
+    color: #333;
+}
+/* 리뷰 별점 스타일 */
+.star-display {
+    font-size: 15px; /* 별 크기 */
+    color: lightgray; /* 기본 빈 별 색상 */
+    border: 0px solid !important;
+    margin-left:-10px;
+
+}
+/* 채워진 별 */
+.star-display .filled {
+    color: gold; /* 채워진 별 색상 */
+}
+@media (max-width: 768px) {
+
+    .main1{
+        width: 768px;
+        margin-top: -90px;
+        margin-bottom:-130px;
+
+    }
+    .top>h1{
+        font-size: 50px;
+
+    }
+    .main1-text{
+
+        width:200px;
+        height:100px;
+        margin-left:50px;
+    }
+    .top{
+        width:768px;
+    }
+    .top>h1{
+        font-size: 45px;
+        margin-left: 30px;
+
+    }
+    .slides {
+        width: 400px;
+        height: 400px;
+        overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 */
+        display: flex; /* 플렉스 레이아웃 유지 */
+        margin-left:-40px;
+    }
+    .slides > img {
+        flex-shrink: 0; /* 이미지 크기가 줄어들지 않도록 */
+        width: 400px; /* 슬라이드 컨테이너에 맞춰 조정 */
+        height: 400px; /* 높이 조정 */
+        object-fit: cover; /* 이미지 비율 유지 */
+    }
+    #btn1{
+        font-size:40px;
+        margin-left:320px;
+        margin-top:190px;
+
+
+    }
+    #btn2{
+        font-size:40px;
+        margin-left:660px;
+
+
+    }
+    .main1-text>h1{
+
+        font-size: 20px;
+
+
+    }
+    .main1-text>h3{
+
+        font-size:10px;
+    }
+
+}

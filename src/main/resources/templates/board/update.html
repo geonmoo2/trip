@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라이온즈파크</title>
+
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!--css-->
+    <link rel="stylesheet" href="/css/update.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+    <!--js-->
+
+    <script src="script.js"></script>
+
+    <!-- 구글 아이콘  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="section-main">
+                <div class="section-left"></div>
+                <div class="section-mid">
+                    <div class="section-mid-form">
+                        <form action="/board/update" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                            <a th:href="@{/board/detail/{id}(id=${boardUpdate.id}, page=${currentPage})}">
+                                <span class="material-symbols-outlined">close</span>
+                            </a>
+                            <input type="hidden" name="id" th:value="${boardUpdate.id}">
+                            <input type="hidden" name="currentPage" th:value="${currentPage}">
+                            글쓴이: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}"> <br>
+                            비밀번호: <input type="text" name="boardPass" th:value="${boardUpdate.boardPass}"> <br>
+                            제목: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+                            내용: <textarea name="boardContents" cols="70" rows="30" th:text="${boardUpdate.boardContents}"></textarea> <br>
+                            <input type="submit" value="글수정">
+                        </form>
+                    </div>
+
+                </div>
+                <div class="section-right"></div>
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <!--//footer-->
+</div>
+<script>
+    /*header*/
+    document.querySelectorAll('.menu > li').forEach(menuItem => {
+        menuItem.addEventListener('mouseenter', () => {
+            document.querySelector('.hideback').classList.add('show-hideback');
+        });
+
+        menuItem.addEventListener('mouseleave', () => {
+            document.querySelector('.hideback').classList.remove('show-hideback');
+        });
+    });
+    /*//header*/
+</script>
+<script th:inline="javascript">
+    function boardUpdate() {
+        const writer = document.querySelector("input[name='boardWriter']").value;
+        const pass = document.querySelector("input[name='boardPass']").value;
+        const title = document.querySelector("input[name='boardTitle']").value;
+        const contents = document.querySelector("textarea[name='boardContents']").value;
+
+        $.ajax({
+            type: "POST",
+            url: "/board/update",
+            data: {
+                boardWriter: writer,
+                boardPass: pass,
+                boardTitle: title,
+                boardContents: contents,
+                id: /*[[${boardUpdate.id}]]*/,
+                currentPage: /*[[${currentPage}]]*/
+            },
+            success: function(res) {
+                console.log("글수정 성공:", res);
+                location.href = "/board/detail/" + /*[[${boardUpdate.id}]]*/ + "?page=" + /*[[${currentPage}]]*/;
+            },
+            error: function(err) {
+                console.log("글수정 실패:", err);
+            }
+        });
+    }
+     function validateForm() {
+        const title = document.querySelector("input[name='boardTitle']").value;
+
+        if (!title.trim()) {
+            alert("제목을 입력해 주세요.");
+            return false;
+        }
+
+        return true;
+    }
+
+
+
+
+</script>
+</body>
+
+</html>

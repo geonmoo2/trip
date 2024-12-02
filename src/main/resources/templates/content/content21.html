@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화담숲 리뷰</title>
+    <link rel="stylesheet" href="/css/content/content.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="icon" href="/path/to/your/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <style>
+        /* 별점 스타일 */
+        .star-rating .star {
+            cursor: pointer;
+            font-size: 30px;
+            color: lightgray; /* 기본 별 색상 */
+        }
+
+        .star-rating .star.filled {
+            color: gold; /* 선택된 별의 색상 */
+        }
+    </style>
+</head>
+<body>
+
+<th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+<main>
+    <div class="top">
+        <h1>여수 유월드 루지 테마파크</h1>
+    </div>
+    <div class="main1">
+        <div class="main1-text">
+            <h1>소개</h1>
+            <h3>오픈시간: 09시 ~ 17시</h3>
+        </div>
+        <span class="material-symbols-outlined" id="btn1">arrow_circle_left</span>
+        <div class="slides">
+            <img src="https://ldb-phinf.pstatic.net/20240717_104/1721178473012Hs7IA_PNG/KakaoTalk_20240717_100710182.png?type=f750_420_60_sharpen" alt="">
+            <img src="https://cdn.newsfreezone.co.kr/news/photo/202004/230343_231545_5733.jpg" alt="">
+            <img src="https://img.einet.kr/P202104014/travel/4568916/01.jpg?v=1623289182" alt="">
+        </div>
+        <span class="material-symbols-outlined" id="btn2">arrow_circle_right</span>
+        <div class="paginate">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <div class="main2">
+        <div class="main2-text">
+            <h2>상세정보</h2>
+            <h3>위치</h3>
+            <p>강원 춘천시 남산면 남이섬길 1</p>
+            <h3>이동방법</h3>
+            <p>자가용 30번, 도보 8분, 지하철 역 20분</p>
+            <h3>연락처</h3>
+            <a href="https://m.aquaplanet.co.kr/ilsan/index.do">웹사이트 접속</a>
+            <p>전화번호: 1833-7001</p>
+        </div>
+
+        <!-- 1. 지도 노드 -->
+        <div id="daumRoughmapContainer1732357851825" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+
+        <!--
+            2. 설치 스크립트
+            * 지도 퍼가기 서비스를 2개 이상 넣을 경우, 설치 스크립트는 하나만 삽입합니다.
+        -->
+        <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+        <!-- 3. 실행 스크립트 -->
+        <script charset="UTF-8">
+            new daum.roughmap.Lander({
+                "timestamp" : "1732357851825",
+                "key" : "2mbff",
+                "mapWidth" : "250",
+                "mapHeight" : "320"
+            }).render();
+        </script>
+    </div>
+
+    <div class="bottom">
+        <!-- 리뷰 섹션 -->
+        <div class="review-section">
+            <div class="average-rating" data-average-rating="${averageRating}">
+                <h3>별점 평균: <span th:text="${#numbers.formatDecimal(averageRating, 1, 1)}">0.0</span> / 5</h3>
+                <div class="average-stars" th:data-average-rating="${averageRating}">
+                    <span class="red-star">★</span>
+                    <span class="red-star">★</span>
+                    <span class="red-star">★</span>
+                    <span class="red-star">★</span>
+                    <span class="red-star">★</span>
+                </div>
+            </div>
+            <div class="review-form">
+
+                <th:block sec:authorize="isAuthenticated()">
+                    <form th:action="@{/content/content{contentId}(contentId=${contentId})}" method="post" th:if="${user != null}">
+                        <label for="comment">리뷰 작성</label>
+                        <div class="star-rating input-stars">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <input type="hidden" id="rating" name="rating" value="0">
+                        <textarea id="comment" name="comment" rows="4" cols="50"></textarea>
+                        <button type="submit">리뷰 제출</button>
+                    </form>
+                </th:block>
+
+
+            </div>
+            <div class="reviews-list">
+                <div th:each="review : ${reviews}">
+                    <div class="star-display" th:attr="data-rating=${review.rating}">
+                        <span class="filled">★</span>
+                        <span class="filled">★</span>
+                        <span class="filled">★</span>
+                        <span class="filled">★</span>
+                        <span class="filled">★</span>
+                    </div>
+                    <button class="delete-button"
+                            th:attr="data-review-id=${review.id}, data-content-id=${contentId}"
+                            th:if="${user != null and review.username == user.username}">
+                        삭제
+                    </button>
+                    <span th:text="${review.username}">작성자</span>
+                    <p><span th:text="${review.comment}"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+
+<!-- 슬라이드 기능 -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const averageRatingElement = document.querySelector('.average-stars');
+        if (!averageRatingElement) {
+            console.error("Element with class 'average-stars' not found!");
+            return;
+        }
+
+        const averageRating = parseFloat(averageRatingElement.getAttribute('data-average-rating'));
+        if (isNaN(averageRating)) {
+            console.error("Invalid averageRating value. Check the data-average-rating attribute.");
+            return;
+        }
+
+        console.log(`평균 별점 값: ${averageRating}`); // 디버깅용
+        const stars = document.querySelectorAll('.average-stars .red-star');
+
+        stars.forEach((star, index) => {
+            const starValue = index + 1;
+            if (averageRating >= starValue) {
+                star.style.color = 'red'; // 채워진 별
+            } else if (averageRating > starValue - 1) {
+                star.style.color = 'red';
+                star.style.background = 'linear-gradient(to right, red 50%, lightgray 50%)';
+                star.style.webkitBackgroundClip = 'text';
+                star.style.webkitTextFillColor = 'transparent';
+            } else {
+                star.style.color = 'lightgray'; // 빈 별
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const reviewForm = document.querySelector('form');
+        const ratingInput = document.getElementById('rating');
+        const commentInput = document.getElementById('comment');
+
+        reviewForm.addEventListener('submit', function (event) {
+            const rating = parseInt(ratingInput.value, 10);
+            const comment = commentInput.value.trim();
+
+            if (!rating || rating < 1) {
+                alert("최소 별점은 1점 이상입니다.\n내용을 적으셔야지 댓글로 작성됩니다.");
+                event.preventDefault();
+                return;
+            }
+
+            if (!comment) {
+                alert("최소 별점은 1점 이상입니다.\n내용을 적으셔야지 댓글로 작성됩니다.");
+                event.preventDefault();
+            }
+        });
+    });
+
+
+
+</script>
+
+<!-- 별점 선택을 위한 JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.slides img');
+    const buttons = document.querySelectorAll('.paginate .circle');
+    const btnPrev = document.getElementById('btn1');
+    const btnNext = document.getElementById('btn2');
+
+    let currentIndex = 0;
+    function updateSlide(index) {
+        slides.forEach((slide, i) => slide.style.display = i == index ? 'block' : 'none');
+        buttons.forEach((button, i) => button.classList.toggle('selected' , i ===index));
+
+    }
+    function showNextSlide() {
+
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlide(currentIndex);
+
+    }
+    function showPrevSlide() {
+
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlide(currentIndex);
+    }
+    btnNext.addEventListener('click', showNextSlide);
+    btnPrev.addEventListener('click', showPrevSlide);
+
+    buttons.forEach((button, i)=>{
+        button.addEventListener('click', () => {
+            currentIndex = i;
+            updateSlide(currentIndex);
+
+        });
+
+
+    });
+    updateContentSlide();
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+// 평균 별점 값을 가져옵니다.
+const averageStarsElement = document.querySelector('.average-stars');
+const averageRating = parseFloat(averageStarsElement.getAttribute('data-average-rating'));
+
+console.log(`평균 별점: ${averageRating}`); // 디버깅용
+
+// 모든 별 요소를 가져옵니다.
+const stars = document.querySelectorAll('.average-stars .red-star');
+
+// 별 색깔 설정
+stars.forEach((star, index) => {
+    const starValue = index + 1; // 별의 값 (1부터 5까지)
+    if (averageRating >= starValue) {
+        // 평균 별점이 현재 별 값 이상이면 채운 별로 설정
+        star.style.color = 'red';
+    } else if (averageRating > starValue - 1) {
+        // 평균 별점이 현재 별 값보다 작고 이전 값보다 크면 반쪽 별 설정
+        star.style.color = 'red';
+        star.style.background = 'linear-gradient(to right, red 50%, lightgray 50%)';
+        star.style.webkitBackgroundClip = 'text';
+        star.style.webkitTextFillColor = 'transparent';
+    } else {
+        // 그 외의 별은 기본 색상
+        star.style.color = 'lightgray';
+    }
+});
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const stars = document.querySelectorAll('.star-rating .star');
+        const ratingInput = document.getElementById('rating');
+
+        // 디버깅용 로그
+        console.log("별 요소 개수:", stars.length);
+        console.log("숨겨진 입력 필드:", ratingInput);
+
+        // 별 요소 또는 숨겨진 입력 필드가 없을 경우 경고 출력
+        if (!stars.length || !ratingInput) {
+            console.error("별점 요소 또는 숨겨진 입력 필드가 없습니다. 확인해주세요.");
+            return;
+        }
+
+        // 별 클릭 이벤트 추가
+        stars.forEach((star) => {
+            star.addEventListener('click', function (event) {
+                event.preventDefault();
+                const value = parseInt(this.getAttribute('data-value'), 10);
+                if (!isNaN(value)) {
+                    ratingInput.value = value;
+                    console.log(`별점 선택: ${value}`);
+                    updateStars(value);
+                }
+            });
+        });
+
+        // 선택한 별에 대한 시각적 업데이트
+        function updateStars(value) {
+            stars.forEach((star, index) => {
+                star.classList.toggle('filled', index < value);
+            });
+        }
+    });
+
+    <!-- 리뷰 별점 표시  -->
+    document.addEventListener('DOMContentLoaded', function () {
+        // 리뷰 별점 표시
+        document.querySelectorAll('.star-display').forEach(starDisplay => {
+            const rating = parseFloat(starDisplay.getAttribute('data-rating')); // 소수점 포함 파싱
+
+            if (isNaN(rating)) {
+                console.error("유효하지 않은 별점 값입니다:", starDisplay.getAttribute('data-rating'));
+                starDisplay.innerHTML = '<span style="color: lightgray;">★★★★★</span>'; // 기본값 처리
+                return;
+            }
+
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += i <= rating
+                    ? '<span style="color: gold;">★</span>' // 채워진 별
+                    : '<span style="color: lightgray;">★</span>'; // 빈 별
+            }
+
+            starDisplay.innerHTML = starsHtml; // 별점 렌더링
+        });
+    });
+    <!-- 리뷰 삭제 버튼  -->
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const reviewId = this.getAttribute('data-review-id');
+                const contentId = this.getAttribute('data-content-id');
+
+                if (!confirm('정말 이 리뷰를 삭제하시겠습니까?')) {
+                    return;
+                }
+
+                fetch(`/content/${contentId}/review/${reviewId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        alert('리뷰가 삭제되었습니다.');
+                        // 삭제된 요소만 제거
+                        this.parentElement.remove();
+                    } else {
+                        return response.text().then(text => {
+                            console.error('Error response:', text);
+                            alert('리뷰 삭제에 실패했습니다: ' + text);
+                        });
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('리뷰 삭제 중 오류가 발생했습니다.');
+                });
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>

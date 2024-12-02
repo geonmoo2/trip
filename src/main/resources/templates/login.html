@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+<main>
+    <div class="main1">
+        <div class="login">
+            <div class="title">
+                로그인
+            </div>
+            <div class="login-body">
+                <form action="/user/login" method="post">
+                    <div>
+                        <input type="text" name="username" class="form-control" placeholder="아이디" required>
+                    </div>
+                    <div>
+                        <input type="password" name="password" class="form-control" placeholder="비밀번호" required>
+                    </div>
+                    <div class="login-save-box">
+                        <label for="remember-me">
+                            <input type="checkbox" id="remember-me" name="remember-me">로그인 정보 저장
+                        </label>
+                        <!-- 에러 메시지 표시 -->
+                        <div class="failmsg">
+                            <p style="color: red;" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-info"><span>로그인</span></button>
+                    </div>
+                </form>
+            </div>
+            <div class="login-option">
+                <div>
+                    <br><br><a href="/register">회원가입 | </a><a href="/user/find_username">아이디 찾기 | </a><a href="/forgot-password">비밀번호찾기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+
+<script>
+    // URL에서 쿼리 파라미터 제거
+    const url = new URL(window.location.href);
+    if (url.searchParams.has('error')) {
+        // 새로 고침 시 메시지를 유지하지 않기 위해 쿼리 파라미터 제거
+        url.searchParams.delete('error');
+        url.searchParams.delete('message');
+        window.history.replaceState({}, document.title, url.pathname);
+    }
+</script>
+
+
+
+</body>
+</html>

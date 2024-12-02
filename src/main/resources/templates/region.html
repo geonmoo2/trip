@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/region.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+
+    <main>
+        <div class="main-center">
+
+            <div class="banner1">
+                <span class="material-symbols-outlined" id="prev-slide">keyboard_double_arrow_left</span>
+                <div class="head" id="slide-container">
+                    
+                    <a href="/content/main1"><div class="slide1"><h1>경기도</h1></div></a>
+                    <a href="/content/main2"><div class="slide2"><h1>강원도</h1></div></a>
+                    <a href="/content/main3"><div class="slide3"><h1>충청도</h1></div></a>
+                    <a href="/content/main4"><div class="slide4"><h1>경상도</h1></div></a>
+                    <a href="/content/main5"><div class="slide5"><h1>전라도</h1></div></a>
+                    <a href="/content/main6"><div class="slide7"><h1>제주도</h1></div></a>
+                    <a href=""></a>
+                
+                </div>
+                <span class="material-symbols-outlined" id="next-slide">keyboard_double_arrow_right</span>
+            </div>
+
+            <div class="banner2">
+                <div class="b1"></div>
+                <div class="b2"></div>
+                <div class="b3"></div>
+                <div class="b4"></div>
+                <div class="b5"></div>
+            </div>
+
+            <div class="main3">
+                <h1>인기 많은 장소</h1>
+                    <div class="f1">
+                        <a href="/content/content1" class="a1">
+                            <div class="g1">
+                                <div class="g1-img1"></div>
+                                <div>
+                                    <h3>화담숲</h3>
+                                    <div class="average-stars-2" id="rating-1">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span id="average-rating1" th:text="${#numbers.formatDecimal(averageRatings[1L] != null ? averageRatings[1L] : 0.0, 1, 1)}">데이터 없음</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/content/content3">
+                            <div class="g1">
+                                <div class="g1-img2"></div>
+                                <div>
+                                    <h3>한국민속촌</h3>
+                                    <div class="average-stars-2" id="rating-3">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span id="average-rating3" th:text="${#numbers.formatDecimal(averageRatings[3L] != null ? averageRatings[3L] : 0.0, 1, 1)}">데이터 없음</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/content/content7">
+                            <div class="g1">
+                                <div class="g1-img3"></div>
+                                <div>
+                                    <h3>대관령 양떼목장</h3>
+                                    <div class="average-stars-2" id="rating-7">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span id="average-rating7" th:text="${#numbers.formatDecimal(averageRatings[7L] != null ? averageRatings[7L] : 0.0, 1, 1)}">데이터 없음</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/content/content9">
+                            <div class="g1">
+                                <div class="g1-img4"></div>
+                                <div>
+                                    <h3>하슬라아트월드</h3>
+                                    <div class="average-stars-2" id="rating-9">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span id="average-rating9" th:text="${#numbers.formatDecimal(averageRatings[9L] != null ? averageRatings[9L] : 0.0, 1, 1)}">데이터 없음</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                </div>
+                <div class="f1">
+                    <a href="/content/content11" class="a1">
+                        <div class="g1">
+                            <div class="g1-img5"></div>
+                            <div>
+                                <h3>독립기념관</h3>
+                                <div class="average-stars-2" id="rating-11">
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span id="average-rating11" th:text="${#numbers.formatDecimal(averageRatings[11L] != null ? averageRatings[11L] : 0.0, 1, 1)}">데이터 없음</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/content/content20">
+                        <div class="g1">
+                            <div class="g1-img6"></div>
+                            <div>
+                                <h3>표충사</h3>
+                                <div class="average-stars-2" id="rating-20">
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span id="average-rating20" th:text="${#numbers.formatDecimal(averageRatings[20L] != null ? averageRatings[20L] : 0.0, 1, 1)}">데이터 없음</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/content/content21">
+                        <div class="g1">
+                            <div class="g1-img7"></div>
+                            <div>
+                                <h3>여수 루지 테마파크</h3>
+                                <div class="average-stars-2" id="rating-21">
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span id="average-rating21" th:text="${#numbers.formatDecimal(averageRatings[21L] != null ? averageRatings[21L] : 0.0, 1, 1)}">데이터 없음</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/content/content26">
+                        <div class="g1">
+                            <div class="g1-img8"></div>
+                            <div>
+                                <h3>카멜리아힐</h3>
+                                <div class="average-stars-2" id="rating-26">
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span class="red-star">★</span>
+                                    <span id="average-rating26" th:text="${#numbers.formatDecimal(averageRatings[26L] != null ? averageRatings[26L] : 0.0, 1, 1)}">데이터 없음</span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <script defer>
+        // banner1 옆으로 넘기는 버전
+        const slider1 = document.querySelector('.head');
+        let currentSlide1 = 0;
+        const totalSlides1 = document.querySelectorAll('.head > a').length;
+        let slideWidth1;
+        let maxScrollLeft1;
+
+        function updateSlideDimensions() {
+            const slideElement = document.querySelector('.head > a');
+            const marginLeft = parseInt(getComputedStyle(slideElement).marginLeft);
+            slideWidth1 = slideElement.clientWidth + marginLeft;
+            maxScrollLeft1 = slider1.scrollWidth - slider1.clientWidth;
+        }
+
+        document.getElementById('prev-slide').addEventListener('click', function() {
+            if (currentSlide1 > 0) {
+                currentSlide1--;
+                updateSlidePositions1();
+            }
+        });
+
+        document.getElementById('next-slide').addEventListener('click', function() {
+            if (slider1.scrollLeft + slideWidth1 < maxScrollLeft1) {
+                currentSlide1++;
+                updateSlidePositions1();
+            } else {
+                slider1.scrollTo({
+                    left: maxScrollLeft1,
+                    behavior: 'smooth'
+                });
+                currentSlide1 = totalSlides1 - 1; // 마지막 슬라이드 인덱스로 설정
+            }
+        });
+
+        function updateSlidePositions1() {
+            let newScrollLeft1 = currentSlide1 * slideWidth1;
+            newScrollLeft1 = Math.min(newScrollLeft1, maxScrollLeft1);
+            slider1.scrollTo({
+                left: newScrollLeft1,
+                behavior: 'smooth'
+            });
+        }
+
+        // banner1 슬라이더 마우스 스크롤.
+        const slider = document.querySelector('.head');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        function handleMouseDown(e) {
+            e.preventDefault(); // 기본 클릭 동작 방지
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+            slider.classList.add('active');
+        }
+
+        function handleMouseLeave() {
+            if (isDown) {
+                isDown = false;
+                slider.classList.remove('active');
+            }
+        }
+
+        function handleMouseUp() {
+            isDown = false;
+            slider.classList.remove('active');
+        }
+
+        function handleMouseMove(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1; // 스크롤 속도 조정
+            slider.scrollLeft = scrollLeft - walk;
+        }
+
+        // 이벤트 리스너를 head와 그 안의 모든 div 요소에 추가
+        slider.addEventListener('mousedown', handleMouseDown);
+        slider.addEventListener('mouseleave', handleMouseLeave);
+        slider.addEventListener('mouseup', handleMouseUp);
+        slider.addEventListener('mousemove', handleMouseMove);
+
+        const divs = document.querySelectorAll('.head > a > div');
+        divs.forEach(div => {
+            div.addEventListener('mousedown', handleMouseDown);
+            div.addEventListener('mouseleave', handleMouseLeave);
+            div.addEventListener('mouseup', handleMouseUp);
+            div.addEventListener('mousemove', handleMouseMove);
+        });
+
+        slider.addEventListener('mouseout', handleMouseLeave);
+
+        // 초기화
+        window.addEventListener('resize', updateSlideDimensions);
+        window.addEventListener('DOMContentLoaded', updateSlideDimensions);
+
+        <!--    동적으로 별점 표시 하기        -->
+        document.addEventListener('DOMContentLoaded', function () {
+            // 별점 컨테이너와 별점 값 매핑
+            const ratings = [
+                { id: 'rating-1', value: parseFloat(document.querySelector('#average-rating1')?.textContent.trim()) || 0 },
+                { id: 'rating-3', value: parseFloat(document.querySelector('#average-rating3')?.textContent.trim()) || 0 },
+                { id: 'rating-7', value: parseFloat(document.querySelector('#average-rating7')?.textContent.trim()) || 0 },
+                { id: 'rating-9', value: parseFloat(document.querySelector('#average-rating9')?.textContent.trim()) || 0 },
+                { id: 'rating-11', value: parseFloat(document.querySelector('#average-rating11')?.textContent.trim()) || 0 },
+                { id: 'rating-20', value: parseFloat(document.querySelector('#average-rating20')?.textContent.trim()) || 0 },
+                { id: 'rating-21', value: parseFloat(document.querySelector('#average-rating21')?.textContent.trim()) || 0 },
+                { id: 'rating-26', value: parseFloat(document.querySelector('#average-rating26')?.textContent.trim()) || 0 }
+            ];
+
+            // 각 컨테이너의 별점 색칠
+            ratings.forEach(({ id, value }) => {
+
+                console.log(`ID: ${id}, Value: ${value}`);
+
+                const container = document.getElementById(id);
+                if (!container) {
+                    console.error(`Container with ID "${id}" not found.`);
+                    return;
+                }
+
+                const stars = container.querySelectorAll('.red-star');
+                stars.forEach((star, index) => {
+                    const starValue = index + 1;
+                    if (value >= starValue) {
+                        star.style.color = 'gold'; // 빨간 별
+                    } else if (value > starValue - 1) {
+                        // 반쪽 별
+                        star.style.color = 'gold';
+                        star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                        star.style.webkitBackgroundClip = 'text';
+                        star.style.webkitTextFillColor = 'transparent';
+                    } else {
+                        star.style.color = 'lightgray'; // 회색 별
+                    }
+                });
+            });
+        });
+        document.querySelectorAll('.head > a').forEach((link) => {
+            link.addEventListener('click', (e) => {
+                console.log("Link clicked:", e.target.href);
+                // e.preventDefault(); // 기본 동작 방해
+            });
+        });
+        document.querySelectorAll('.head > a').forEach(link => {
+            console.log(link, getComputedStyle(link).pointerEvents);
+        });
+
+    </script>
+
+    <script defer>
+        // 배너2 슬라이더 JavaScript
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.banner2 > div');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.style.left = '0';
+                } else {
+                    slide.style.left = '100%';
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function startSlider() {
+            showSlide(currentIndex);
+            setInterval(nextSlide, 3000); // 3초마다 슬라이드 전환
+        }
+
+        document.addEventListener('DOMContentLoaded', startSlider);
+
+    </script>
+
+</body>
+</html>

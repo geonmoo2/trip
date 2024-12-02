@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .main1{
+
+           width: 100%;
+           height: 480px;
+           border: 0px solid black;
+           background-image: url("https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202211/05/30f53943-37f8-40e4-9360-3c70f4d4a0b6.jpg");
+           background-size: 100% 128%;
+           margin-top: 100px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+    <main>
+        <div class="main1"></div>
+            <div class="main2">
+
+                <div class="main-content">
+                    <div class="main-content-text">
+                        <h1>강원도 인기 관광명소</h1>
+
+
+                        <div>
+                            <span>한반도 중앙부 동쪽의 태백산맥을 중심으로 영동과 영서로 크게 구분되어 있다. 위도상으로는 북위 37° 02′에서 38° 37′에 걸치고 경도상으로는 동경 127° 05′에서 129° 22′에 걸쳐 있으며 북위 38도선은 강원도의 거의 중앙부를 통과한다. 동서의 길이는 약 150㎞, 남북은 약 243㎞에 달하며, 동쪽은 약 212㎞에 걸쳐 해안선을 이루면서 서쪽은 황해도 신계·김천군, 경기도 연천·포천·가평·양평·여주 등 여러 군과 경계를 이루고 남쪽은 충청북도 충주·제천시, 단양군 및 경상북도의 영주시, 봉화·울진군과 북쪽은 함경남도 안변군·문천군 및 황해도의 곡산군과 접하여 5도 3시 13군과 경계를 이루고 있다.</span>
+                        </div>
+
+
+
+                    </div>
+                    <div class="content1">
+
+                        <div class="s1">
+                            <span class="material-symbols-outlined" id="btn1">keyboard_double_arrow_left</span>
+                            <div class="slides">
+
+                                <a href="/content/content6">
+                                    <img src="https://image.lawtimes.co.kr/images/163377_1.jpg" alt="">
+                                </a>
+                                <a href="/content/content6">
+                                    <img src="https://b2587717.smushcdn.com/2587717/wp-content/uploads/2020/08/View-of-our-youngest-son-on-the-Nami-Island-Zipline-you-can-see-Nami-Island-in-the-middle-of-the-river-1024x643.jpg?lossy=1&strip=1&webp=1" alt="">
+                                </a>
+                                <a href="/content/content6">
+                                    <img src="https://cdn.pharmnews.com/news/photo/202311/233552_107022_1626.jpg" alt="">
+                                </a>
+
+                                <a href="/content/content6">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220827_52%2F1661566103887puFpU_JPEG%2F%25B3%25B2%25C0%25CC%25BC%25B6_%25B0%25A1%25C0%25BB_%25B4%25EB%25C7%25A5%25BB%25E7%25C1%25F83.jpg" alt="">
+                                </a>
+                            </div>
+                            <span class="material-symbols-outlined" id="btn2">keyboard_double_arrow_right</span>
+                            <div class="paginate">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                        <div class="s1-text">
+                            <h2>01.</h2>
+                            <div class="s1-text1">
+                                <h1>남이섬</h1>
+                            </div>
+                            <div class="s1-text2">
+                                <span>남이섬은 ‘동화 나라, 노래의 섬’을 콘셉트로 다양한 문화행사, 콘서트 및 전시를 꾸준히 개최해 오고 있으며, 어린이들에게는 꿈과 희망을, 연인들에게는 사랑과 추억을, 문화계 인사들에게는 창작의 터전과 기반을 마련해 주고 있는 자연 생태 문화공간이다. 주요 시설로는 노래 박물관, 그림책 놀이터, MICE 센터, 투개더파크, 유니세프 라운지 등의 문화시설과 자전거, 나눔 열차, 스토리 투어버스 등의 유기시설이 갖춰져 있다.</span>
+                                <div><h5>별점 평균</h5>
+                                    <div class="average-stars-2" id="rating-1">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                    </div>
+                                    <span id="average-rating" th:text="${#numbers.formatDecimal(averageRatings[6L] != null ? averageRatings[6L] : 0.0, 1, 1)}">데이터 없음</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn3">arrow_circle_left</span>
+                        <div class="content1-text">
+                            <!-- 첫 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 0}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[0].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[0].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[0].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 두 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 1}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[1].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[1].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span   th:text="${contentReviews[1].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 세 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 2}">
+
+                                <p class="review-user"><span th:text="${contentReviews[2].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[2].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[2].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 네 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 3}">
+
+                                <p class="review-user"><span th:text="${contentReviews[3].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[3].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span  th:text="${contentReviews[3].comment}">리뷰 없음</span></p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn4">arrow_circle_right</span>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content7">
+                            <img src="https://ldb-phinf.pstatic.net/20230227_273/1677460525934zcFeg_JPEG/DSC04460.JPG?type=f750_420_60_sharpen" alt="">
+                        </a>
+                        <div>
+                            <h3>02.</h3>
+                            <h2>대관령 양떼목장</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating2" th:text="${#numbers.formatDecimal(averageRatings[7L] != null ? averageRatings[7L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-2">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>한국 농림부에서 지정한 동물복지와 산림보존에 특화된 목장이다. 20만 5,000㎡의 넓은 초지에 양들을 자유로이 방목한다. 1989년에 첫 축사를 완공하고 1991년에 면양을 들인 목장은 오늘날 면양 사육에 관해 한국 최고 수준의 시스템을 갖춘 목장으로 성장했다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content8">
+                            <img src="https://cdn.digitaltoday.co.kr/news/photo/202311/494631_460901_657.png" alt="">
+                        </a>
+                        <div>
+                            <h3>03.</h3>
+                            <h2>속초아이대관람차</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating3" th:text="${#numbers.formatDecimal(averageRatings[8L] != null ? averageRatings[8L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-3">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>국내 유일하게 해변에 위치해 속초의 푸른 바다를 한눈에 감상할 수 있으며 설악산의 절경도 감상할 수 있다. 속초아이는 아파트 22층 높이로 정원 6명인 관람차가 36대로 최대 216명이 동시에 이용할 수 있다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content9">
+                            <img src="https://image.kkday.com/v2/image/get/w_1900%2Cc_fit%2Cq_55/s1.kkday.com/product_104858/20240110045949_bMVo7/jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>04.</h3>
+                            <h2>하슬라아트월드</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating4" th:text="${#numbers.formatDecimal(averageRatings[9L] != null ? averageRatings[9L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-4">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>하슬라아트월드는 자연과 사람, 예술이 조화롭게 공존하는 종합예술공간이다. 3만 3천여 평의 조각공원은 ‘성성활엽길’, ‘소나무 정원’, ‘시간의 광장’, '바다정원‘, ’ 하늘전망대‘, ’ 돌갤러리와 소똥미술관‘의 테마로 자연훼손을 최소화하기 위하여 비탈면과 산의 높이를 그대로 이용하여 손으로 직접 만들었으며 자연을 가장 아름답게 볼 수 있다.</span>
+                        </div>
+                    </div>
+                    <div class="content3">
+                        <a href="/content/content10">
+                            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20230717_180%2F1689568727297Jl3vg_JPEG%2F%25BC%25D2%25B1%25DD%25BB%25EA_%25BB%25E7%25C1%25F8.jpeg" alt="">
+                        </a>
+                        <div>
+                            <h3>05.</h3>
+                            <h2>소금산그랜드밸리</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating5" th:text="${#numbers.formatDecimal(averageRatings[10L] != null ? averageRatings[10L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-5">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>원주시에서 서쪽으로 18km 떨어져 있는 간현관광지는 남한강 지류인 섬강과 삼산천이 합쳐지는 지점에 자리한 유원지이다. 강 양쪽에 40~50m 높이의 기암괴석들이 울창한 고목, 검푸른 강물과 조화를 이루며 강변에는 넓은 백사장이 펼쳐져 있어 경관이 빼어나다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slides img');
+            const buttons = document.querySelectorAll('.paginate .circle');
+            const btnPrev = document.getElementById('btn1');
+            const btnNext = document.getElementById('btn2');
+
+            let currentIndex = 0;
+            function updateSlide(index) {
+                slides.forEach((slide, i) => slide.style.display = i == index ? 'block' : 'none');
+                buttons.forEach((button, i) => button.classList.toggle('selected' , i ===index));
+
+            }
+            function showNextSlide() {
+
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlide(currentIndex);
+
+            }
+            function showPrevSlide() {
+
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlide(currentIndex);
+            }
+            btnNext.addEventListener('click', showNextSlide);
+            btnPrev.addEventListener('click', showPrevSlide);
+
+            buttons.forEach((button, i)=>{
+                button.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlide(currentIndex);
+
+                });
+            });
+
+            //Initialize the first slide
+            updateSlide(currentIndex);
+
+            const contentText = document.querySelector('.content1-text');
+            const contentDivs = contentText.querySelectorAll('div');
+            const btnLeft = document.getElementById('btn3');
+            const btnRight = document.getElementById('btn4');
+
+            let currentContentIndex = 0;
+
+            btnLeft.addEventListener('click' , function () {
+                if(currentContentIndex > 0) {
+
+                    currentContentIndex--;
+
+                }
+                updateContentSlide();
+            });
+
+            btnRight.addEventListener('click',function(){
+                if(currentContentIndex <contentDivs.length - 2) {
+                    currentContentIndex++;
+
+                }
+                updateContentSlide();
+            });
+            function updateContentSlide() {
+                const slideWidth = contentDivs[0].offsetWidth;
+                contentText.style.transform = `translateX(${-currentContentIndex * slideWidth+60}px)`;
+
+            }
+            updateContentSlide();
+
+
+        });
+
+            <!-- 동적으로 만든 별점-->
+                document.addEventListener('DOMContentLoaded', function () {
+                    // 별점 컨테이너와 별점 값 매핑
+                    const ratings = [
+                        { id: 'rating-1', value: parseFloat(document.querySelector('#average-rating')?.textContent.trim()) || 0 },
+                        { id: 'rating-2', value: parseFloat(document.querySelector('#average-rating2')?.textContent.trim()) || 0 },
+                        { id: 'rating-3', value: parseFloat(document.querySelector('#average-rating3')?.textContent.trim()) || 0 },
+                        { id: 'rating-4', value: parseFloat(document.querySelector('#average-rating4')?.textContent.trim()) || 0 },
+                        { id: 'rating-5', value: parseFloat(document.querySelector('#average-rating5')?.textContent.trim()) || 0 }
+                    ];
+
+                    // 각 컨테이너의 별점 색칠
+                    ratings.forEach(({ id, value }) => {
+
+                        console.log(`ID: ${id}, Value: ${value}`);
+
+                        const container = document.getElementById(id);
+                        if (!container) {
+                            console.error(`Container with ID "${id}" not found.`);
+                            return;
+                        }
+
+                        const stars = container.querySelectorAll('.red-star');
+                        stars.forEach((star, index) => {
+                            const starValue = index + 1;
+                            if (value >= starValue) {
+                                star.style.color = 'gold'; // 빨간 별
+                            } else if (value > starValue - 1) {
+                                // 반쪽 별
+                                star.style.color = 'gold';
+                                star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                                star.style.webkitBackgroundClip = 'text';
+                                star.style.webkitTextFillColor = 'transparent';
+                            } else {
+                                star.style.color = 'lightgray'; // 회색 별
+                            }
+                        });
+                    });
+                });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 별점 생성 및 적용 함수
+            function createAndApplyStars(containerSelector, averageRating) {
+                const container = document.querySelector(containerSelector);
+                if (!container) {
+                    console.error(`Container ${containerSelector} not found`);
+                    return;
+                }
+
+                // 별점 초기화 및 생성
+                container.innerHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement('span');
+                    star.classList.add('red-star');
+                    star.textContent = '★';
+
+                    // 별 색상 설정
+                    if (averageRating >= i) {
+                        star.style.color = 'gold'; // 빨간 별
+                    } else if (averageRating > i - 1) {
+                        // 반쪽 별 처리
+                        star.style.color = 'gold';
+                        star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                        star.style.webkitBackgroundClip = 'text';
+                        star.style.webkitTextFillColor = 'transparent';
+                    } else {
+                        star.style.color = 'lightgray'; // 기본 별
+                    }
+
+                    container.appendChild(star);
+                }
+            }
+
+            // 평균 별점 가져오기 및 적용
+            const averageRatingElement = document.getElementById('average-rating'); // ID 선택
+            if (averageRatingElement) {
+                const averageRating = parseFloat(averageRatingElement.textContent.trim()) || 0;
+                console.log("평균 별점:", averageRating); // 디버깅용 로그
+                createAndApplyStars('.average-stars-2', averageRating);
+            } else {
+                console.error("평균 별점을 가져올 수 없습니다.");
+            }
+        });
+    </script>
+
+</body>
+</html>

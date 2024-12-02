@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+
+    <!--js-->
+    <script type="text/javascript" src="/js/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+    <main>
+        <section>
+            <div class="adult_join">
+                <div class="container">
+                    <h1>회원 정보</h1>
+                    <p><strong>아이디 :</strong> <span th:text="${user.userName}"></span></p>
+                    <p><strong>이메일 :</strong> <span th:text="${user.email}"></span></p>
+                    <p><strong>휴대폰 번호 :</strong> <span th:text="${user.phoneNumber}"></span></p>
+                    <p><strong>주소 :</strong> <span th:text="${user.addr}"></span></p>
+                    <p><strong>이름 :</strong> <span th:text="${user.realname}"></span></p>
+                    <p><strong>생년월일 :</strong> <span th:text="${user.birth}"></span></p>
+
+                    <!-- 프로필 수정 및 비밀번호 변경 페이지로 이동하는 버튼 -->
+                    <div class="mt-3">
+                        <a class="btn btn-primary" id="primary" th:href="@{/update-profile}">프로필 수정</a>
+                        <a class="btn btn-secondary" th:href="@{/update-password}">비밀번호 변경</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <!--footer-->
+    <th:block th:replace="fragments/footer :: footerFragment"></th:block>
+    <!--footer-->
+    <script>
+        /* header */
+        document.querySelectorAll('.menu > li').forEach(menuItem => {
+            menuItem.addEventListener('mouseenter', () => {
+                document.querySelector('.hideback').classList.add('show-hideback');
+            });
+            menuItem.addEventListener('mouseleave', () => {
+                document.querySelector('.hideback').classList.remove('show-hideback');
+            });
+        });
+        /* header */
+    </script>
+
+</div>
+</body>
+</html>
