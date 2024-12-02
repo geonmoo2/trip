@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: geonmoo2/trip
-          clean: false  # 기존 데이터를 삭제하지 않도록 설정
+          clean: false
 
       - name: Set up docker buildx
         id: buildx
@@ -54,18 +54,19 @@ jobs:
     runs-on: [ self-hosted, label-go ]
     steps:
       - name: Stop MySQL container
-        run: docker stop new-mysql || true
+        run: |
+          docker stop new-mysql || true
+
+      - name: Fix MySQL data directory permissions
+        run: |
+          sudo chown -R ec2-user:ec2-user /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
+          sudo chmod -R u+w /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
 
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           repository: geonmoo2/trip
           clean: false
-
-      - name: Fix permissions for MySQL data directory
-        run: |
-          sudo chown -R ec2-user:ec2-user /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
-          sudo chmod -R u+w /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
 
       - name: Stop and remove existing containers
         run: |
