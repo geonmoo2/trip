@@ -8,14 +8,15 @@ env:
   DOCKER_IMAGE: ghcr.io/${{ github.actor }}/trip
   VERSION: ${{ github.sha }}
   NAME: go_cicd
-  DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/trip/trip/repo/docker-compose.yml
+  DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/trip/trip/docker-compose.yml
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           repository: geonmoo2/trip
 
@@ -51,7 +52,8 @@ jobs:
     name: Deploy
     runs-on: [ self-hosted, label-go ]
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           repository: geonmoo2/trip
 
@@ -59,7 +61,12 @@ jobs:
         run: pwd
 
       - name: List files in current directory
-        run: ls -al
+        run: ls -al /home/ec2-user/actions-runner/_work/trip/trip/
+
+      - name: Debug docker-compose file path
+        run: |
+          echo "DOCKER_COMPOSE_FILE: ${{ env.DOCKER_COMPOSE_FILE }}"
+          ls -al ${{ env.DOCKER_COMPOSE_FILE }}
 
       - name: Login to ghcr
         uses: docker/login-action@v2
