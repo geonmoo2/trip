@@ -7,19 +7,17 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
-      MYSQL_USER: trip_user
-      MYSQL_PASSWORD: trip_password
     ports:
       - "3306:3306"
     networks:
       - new-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
-      - ${MYSQL_VOLUME:-/home/ec2-user/actions-runner/_work/trip/trip/mysql-data}:/var/lib/mysql  # 환경 변수를 처리
+      - mysql-data:/var/lib/mysql  # 볼륨 마운트 추가
 
   backend:
     build:
@@ -43,5 +41,4 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:  # MySQL 데이터 볼륨
-    driver: local
+  mysql-data:  # 볼륨 선언
