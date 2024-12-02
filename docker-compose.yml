@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - mysql-data:/var/lib/mysql
+      - ./mysql-data:/var/lib/mysql  # 로컬 경로에 마운트된 볼륨
 
   backend:
     build:
@@ -43,4 +43,5 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:
+  mysql-data:  # MySQL 데이터 볼륨
+    driver: local  # Docker 볼륨을 로컬에 저장
