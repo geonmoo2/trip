@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ${MYSQL_VOLUME:-/home/ec2-user/actions-runner/_work/trip/trip/mysql-data}:/var/lib/mysql  # 환경 변수를 처리
+      - ./mysql-data:/var/lib/mysql  # 상대 경로로 설정
 
   backend:
     build:
