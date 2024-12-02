@@ -9,6 +9,7 @@ env:
   VERSION: ${{ github.sha }}
   NAME: go_cicd
   DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/trip/trip/docker-compose.yml
+  MYSQL_VOLUME: /home/ec2-user/actions-runner/_work/trip/trip/mysql-data  # 볼륨 경로 설정
 
 jobs:
   build:
