@@ -17,7 +17,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - mysql-data:/var/lib/mysql  # 볼륨 마운트 추가
+      - /home/ec2-user/actions-runner/_work/trip/trip/mysql-data:/var/lib/mysql  # 로컬 디렉토리와 마운트
 
   backend:
     build:
@@ -41,4 +41,4 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:  # 볼륨 선언
+  mysql-data:  # 익명 볼륨 선언
