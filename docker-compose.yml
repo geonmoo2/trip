@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./mysql-data:/var/lib/mysql  # 로컬 경로에 마운트된 볼륨
+      - ${MYSQL_VOLUME}:/var/lib/mysql  # 환경 변수를 활용하여 볼륨 경로 설정
 
   backend:
     build:
