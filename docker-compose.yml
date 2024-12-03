@@ -1,9 +1,6 @@
 version: "3.8"
 
 services:
-  mysql-container:
-    external: true
-
   new-spring:
     build:
       context: .
@@ -20,5 +17,5 @@ services:
 
 networks:
   new-network:
-    name: new-network
+    name: new-network  # 이미 존재하는 네트워크 이름 명시
     external: true
