@@ -52,10 +52,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Prepare docker-compose.yml
+      - name: Prepare files
         run: |
           mkdir -p /home/ec2-user/actions-runner/_work/trip/trip/repo/
           cp ./docker-compose.yml /home/ec2-user/actions-runner/_work/trip/trip/repo/docker-compose.yml
+          cp ./Dockerfile /home/ec2-user/actions-runner/_work/trip/trip/repo/Dockerfile
+
+      - name: Debug files
+        run: |
+          ls -l /home/ec2-user/actions-runner/_work/trip/trip/repo/
+          cat /home/ec2-user/actions-runner/_work/trip/trip/repo/Dockerfile
 
       - name: Docker Compose setup
         run: |
