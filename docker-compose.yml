@@ -1,16 +1,11 @@
 version: "3.8"
 
 services:
-  mysql-container:
-    external: true  # 이미 실행 중인 mysql-container를 사용
-
   new-spring:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
-    depends_on:
-      - mysql-container
     ports:
       - "8080:8080"
     environment:
