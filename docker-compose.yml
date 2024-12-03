@@ -1,33 +1,39 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  mysql-container:  # 서비스 이름을 mysql-container로 변경
-    image: mysql:latest
-    container_name: mysql-container
+  new-mysql:
+    image: mysql:8.0
+    container_name: new-mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
     ports:
       - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
     networks:
       - new-network
-    restart: unless-stopped
+    restart: unless-stopped 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql-data:/var/lib/mysql  # 익명 볼륨
 
-  app:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: mysql-container
+    depends_on:
+      new-mysql:
+        condition: service_healthy
     ports:
       - "8080:8080"
     environment:
-      SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip  # mysql-container로 참조 변경
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
-    depends_on:
-      - mysql-container
     networks:
       - new-network
     restart: unless-stopped
@@ -36,6 +42,9 @@ volumes:
   mysql-data:
     driver: local
 
+volumes:
+  mysql-data:  # 익명 볼륨 선언
+
 networks:
-  new-network:
+  git-actions-auto_my-network:
     driver: bridge
