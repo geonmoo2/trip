@@ -1,4 +1,4 @@
-# Java 21 기반 Eclipse Temurin 이미지로 빌드
+# Build stage
 FROM eclipse-temurin:21-jdk AS build
 
 # Set the working directory
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y dos2unix \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Download dependencies (using --no-daemon to prevent issues in CI/CD environments)
+# Download dependencies
 RUN ./gradlew --no-daemon dependencies
 
 # Copy the source code
@@ -26,7 +26,7 @@ COPY src /app/src
 # Clean and build the project (excluding tests)
 RUN ./gradlew clean build -x test --no-daemon --stacktrace --info
 
-# Step 2: Runtime Stage
+# Runtime stage
 FROM eclipse-temurin:21-jdk AS runtime
 
 # Set the working directory
