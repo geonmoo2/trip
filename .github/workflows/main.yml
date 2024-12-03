@@ -1,29 +1,71 @@
-deploy:
-  needs: build
-  name: Deploy
-  runs-on: [ self-hosted, label-go ]
-  steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        repository: geonmoo2/trip
-        clean: false
+name: CI/CD Docker
 
-    - name: Ensure MySQL data directory exists
-      run: |
-        mkdir -p /home/ec2-user/actions-runner/_work/trip/trip/mysql-data
-        sudo chown -R ec2-user:ec2-user /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
-        sudo chmod -R u+w /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
+on:
+  push:
+    branches:
+      - main  # main 브랜치에 푸시될 때 실행
+  workflow_dispatch:  # 수동 실행 트리거
 
-    - name: Stop and remove existing containers
-      run: |
-        sudo docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} down --volumes=false || true
+env:
+  DOCKER_IMAGE: ghcr.io/${{ github.actor }}/trip
+  VERSION: ${{ github.sha }}
+  NAME: go_cicd
+  DOCKER_COMPOSE_FILE: /home/ec2-user/actions-runner/_work/trip/trip/docker-compose.yml
 
-    - name: Connect existing MySQL container to the network
-      run: |
-        docker network connect new-network mysql-container || true
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          repository: geonmoo2/trip
+          clean: false
 
-    - name: Docker Compose setup
-      run: |
-        sudo docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} pull
-        sudo docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} up -d --build --remove-orphans
+      - name: Set up docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Cache docker layers
+        uses: actions/cache@v3
+        with:
+          path: ${{ runner.temp }}/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ env.VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Login to ghcr
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_TOKEN }}
+
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${{ env.DOCKER_IMAGE }}:latest
+
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: [ self-hosted, label-go ]
+    steps:
+      - name: Ensure MySQL data directory exists
+        run: |
+          mkdir -p /home/ec2-user/actions-runner/_work/trip/trip/mysql-data
+          sudo chown -R ec2-user:ec2-user /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
+          sudo chmod -R u+w /home/ec2-user/actions-runner/_work/trip/trip/mysql-data/
+
+      - name: Connect existing MySQL container to the network
+        run: |
+          docker network connect new-network mysql-container || true
+
+      - name: Docker Compose setup
+        run: |
+          sudo docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} pull
+          sudo docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} up -d --build --remove-orphans
