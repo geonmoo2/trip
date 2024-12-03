@@ -1,39 +1,41 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  mysql-container:
-    image: mysql:8.0
+  mysql:
+    image: mysql:latest
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
-      - new-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - git-actions-auto_my-network
+    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
 
-  new-spring:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: new-spring
-    depends_on:
-      mysql-container:
-        condition: service_healthy  # 헬스체크 기반 의존성
     ports:
       - "8080:8080"
     environment:
+      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - mysql
     networks:
-      - new-network
+      - git-actions-auto_my-network
+    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
+
+volumes:
+  mysql-data:
+    driver: local
 
 networks:
-  new-network:
+  git-actions-auto_my-network:
     driver: bridge
