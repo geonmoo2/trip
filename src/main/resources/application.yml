@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sl
+  datasource:
+    url: jdbc:mysql://mysql-container:3306/trip
+    username: root
+    password: 1234
+
+server:
+  address: 0.0.0.0
+  port: 8080

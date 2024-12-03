@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'PreT';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/font/Pretendard-Thin.eot');
+    src: local('��'),
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Pre';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/font/Pretendard-Light.eot');
+    src: local('��'),
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreR';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/font/Pretendard-Regular.eot');
+    src: local('��'),
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreM';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/font/Pretendard-Medium.eot');
+    src: local('��'),
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreSB';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/font/Pretendard-SemiBold.eot');
+    src: local('��'),
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreEB';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/font/Pretendard-ExtraBold.eot');
+    src: local('��'),
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+/* main */
+.wrapper > main {
+
+    margin: 0;
+    padding: 0;
+    height: 900px;
+
+    background-color: rgb(255, 255, 255, 0.7);
+
+
+    background-size: auto 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.wrapper > main > section {
+    margin: auto;
+
+}
+
+.wrapper > main > section > .adult_join {
+    width: 800px;
+    height: 900px;
+    margin: auto;
+
+
+    padding: 60px 68px 40px;
+    border-radius: 10px;
+    color: rgb(7, 7, 82);
+    background-color: rgb(255, 255, 255, 0.7);
+}
+
+.adult_join .container {
+    width: 100%;
+    max-width: 600px;
+    margin-top:-30px;
+    margin-left:34px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+
+.adult_join .container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.adult_join .container .form-group {
+    margin-bottom: 15px;
+}
+
+.adult_join .container .form-group label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.adult_join .container .form-group input,
+.adult_join .container .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.adult_join .container .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top:50px;
+}
+
+.adult_join .container .btn:hover {
+    background-color: #0056b3;
+}
+
+.adult_join .container .alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.adult_join .container .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.adult_join .container .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}

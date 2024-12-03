@@ -23,7 +23,11 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenProvider {
 
+<<<<<<< HEAD
     String url="jdbc:mysql://new-mysql:3306/trip";
+=======
+    String url="jdbc:mysql://mysql-container:3306/trip";
+>>>>>>> ff58b75cfb42c7fde86d5d008f28e3e88d1e3d32
     String username ="root";
     String password = "1234";
     Connection conn = null;

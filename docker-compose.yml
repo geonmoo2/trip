@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  new-mysql:
+    image: mysql:8.0
+    container_name: new-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: trip
+    ports:
+      - "3306:3306"
+    networks:
+      - new-network
+    restart: unless-stopped 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mysql-data:/var/lib/mysql  # 익명 볼륨
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysql-container
+    depends_on:
+      new-mysql:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
+    networks:
+      - new-network
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+    driver: local
+
+volumes:
+  mysql-data:  # 익명 볼륨 선언
+
+networks:
+  git-actions-auto_my-network:
+    driver: bridge
