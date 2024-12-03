@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  mysql:
+  mysql-container:  # 서비스 이름을 mysql-container로 변경
     image: mysql:latest
     container_name: mysql-container
     environment:
@@ -13,7 +13,7 @@ services:
       - mysql-data:/var/lib/mysql
     networks:
       - new-network
-    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
+    restart: unless-stopped
 
   app:
     build:
@@ -23,19 +23,19 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip  # mysql-container로 참조 변경
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     depends_on:
-      - mysql
+      - mysql-container
     networks:
       - new-network
-    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
+    restart: unless-stopped
 
 volumes:
   mysql-data:
     driver: local
 
 networks:
-    new-network:
+  new-network:
     driver: bridge
