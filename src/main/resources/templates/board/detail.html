@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라이온즈파크</title>
+
+    <!-- Google Icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-- 구글 아이콘  -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!--css-->
+    <link rel="stylesheet" href="/css/board.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
+
+
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 20
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <th:block th:replace="fragments/nav :: navFragment"></th:block>
+
+    <main>
+        <section>
+            <div class="section-main">
+                <div class="section-left"></div>
+                <div class="section-mid">
+
+                    <div class="container">
+                        <h1>자유 게시판</h1>
+                        <div class="tittle">
+                            <a href="/samsung"><span class="material-symbols-outlined">home</span></a>
+                            <span class="material-symbols-outlined">chevron_right</span>
+                            <a href="/fan/fan_main">팬</a>
+                            <span class="material-symbols-outlined">chevron_right</span>
+                            <a href="/fan/board/fanpaging">자유 게시판</a>
+                        </div>
+                        <div class="board-details">
+                            <h2 th:text="${board.boardTitle}">제목 부분</h2>
+                            <div class="board-line1">
+                                <div>작성자: <span th:text="${board.boardWriter}"></span></div>
+                                <div>작성일: <span th:text="${board.formattedBoardCreatedTime}"></span></div>
+                                <div>조회수: <span th:text="${board.boardHits}"></span></div>
+                            </div>
+                            <div class="contents"><textarea readonly th:text="${board.boardContents}"></textarea></div>
+
+                            <div class="content-bottom-btn">
+                                <button onclick="listReq()">목록</button>
+                                <th:block th:if="${board.boardWriter == username}">
+                                    <button onclick="updateReq()">수정</button>
+                                    <button onclick="deleteReq()">삭제</button>
+                                </th:block>
+
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <button onclick="updateReq()">수정</button>
+                                    <button onclick="deleteReq()">삭제</button>
+                                </th:block>
+                            </div>
+
+                        </div>
+
+                        <!-- 로그인 상태에서만 댓글 보여주기    -->
+                        <th:block sec:authorize="hasRole('ROLE_USER')">
+                            <div class="comment-form">
+                                <h4>댓글 작성</h4>
+                                <div>
+                                    <input type="hidden" id="commentWriter" th:value="${username}" />
+                                    <input type="text" id="commentContents" placeholder="내용">
+                                    <button id="comment-write-btn" onclick="commentWrite()">댓글작성</button>
+                                </div>
+                            </div>
+                        </th:block>
+
+                        <div class="comments-section">
+
+                            <div id="comment-list">
+                                <div th:each="comment : ${commentList}" class="comment-item" th:data-comment-id="${comment.id}">
+                                    <div class="comment-content" th:text="${comment.commentContents}"></div>
+                                    <div class="comment-meta">
+                                        <span class="material-icons-outlined delete-button" onclick="deleteComment(this)">close</span>
+                                        <div th:text="${comment.commentWriter}"></div>
+                                        <div th:text="${comment.getFormattedCommentCreatedTime()}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-right"></div>
+            </div>
+        </section>
+
+    </main>
+    <!--footer-->
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <!--//footer-->
+</div>
+<script>
+    /*header*/
+    document.querySelectorAll('.menu > li').forEach(menuItem => {
+        menuItem.addEventListener('mouseenter', () => {
+            document.querySelector('.hideback').classList.add('show-hideback');
+        });
+
+        menuItem.addEventListener('mouseleave', () => {
+            document.querySelector('.hideback').classList.remove('show-hideback');
+        });
+    });
+    /*//header*/
+</script>
+<script th:inline="javascript">
+    function commentWrite() {
+      const writerElement = document.getElementById("commentWriter");
+      if (writerElement) {
+          const writer = writerElement.value;
+          const contents = document.getElementById("commentContents").value;
+          const id = /*[[${board.id}]]*/ 0; // 실제 ID를 가져오는 코드로 변경하세요
+          $.ajax({
+              type: "POST",
+              url: "/comment/save",
+              data: {
+                  commentWriter: writer,
+                  commentContents: contents,
+                  boardId: id
+              },
+              success: function(res) {
+                  console.log("댓글 작성 성공:", res);
+                  let output = "";
+                  for (let i in res) {
+                      output += "<div class='comment-item' data-comment-id='" + res[i].id + "'>";
+                      output += "<span class='material-icons-outlined delete-button' onclick='deleteComment(this)'>close</span>";
+                      output += "<div class='comment-content'>" + res[i].commentContents + "</div>";
+                      output += "<div class='comment-meta'>";
+                      output += "<div>" + res[i].commentWriter + "</div>";
+                      output += "<div>" + res[i].formattedCommentCreatedTime + "</div>";
+                      output += "</div></div>";
+                  }
+                  document.getElementById('comment-list').innerHTML = output;
+                  document.getElementById('commentContents').value = '';
+              },
+              error: function(err) {
+                  console.log("댓글 작성 실패:", err);
+              }
+          });
+      } else {
+          console.error("commentWriter 요소를 찾을 수 없습니다.");
+      }
+  }
+
+function deleteComment(element) {
+    const commentId = $(element).closest('.comment-item').data('comment-id');
+    if (confirm("정말로 이 댓글을 삭제하시겠습니까?")) {
+        console.log("삭제 요청 ID:", commentId); // 로그 추가
+        $.ajax({
+            type: "DELETE",
+            url: "/comment/delete/" + commentId,
+            success: function(res) {
+                console.log("삭제 성공:", res); // 로그 추가
+                $(element).closest('.comment-item').remove();
+            },
+            error: function(err) {
+                console.log("삭제 실패:", err); // 로그 추가
+            }
+        });
+    }
+}
+
+function listReq() {
+    const page = /*[[${currentPage}]]*/ 1; // 실제 페이지 값을 가져오는 코드로 변경하세요
+    location.href = "/board/paging?page=" + page;
+}
+
+function updateReq() {
+    const id = /*[[${board.id}]]*/ 0; // 실제 ID를 가져오는 코드로 변경하세요
+    location.href = "/board/update/" + id + "?page=" + /*[[${currentPage}]]*/ 1;
+}
+
+function deleteReq() {
+    const id = /*[[${board.id}]]*/ 0; // 실제 ID를 가져오는 코드로 변경하세요
+    location.href = "/board/delete/" + id + "?page=" + /*[[${currentPage}]]*/ 1;
+}
+</script>
+
+</body>
+
+</html>

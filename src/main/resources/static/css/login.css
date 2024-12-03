@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+.main1{
+    width: 1200px;
+    height: 900px;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+
+}
+.failmsg{
+    margin-top:10px;
+    font-size:14px;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+
+    border: 1px solid black;
+    width: 450px;
+    height: 650px;
+    border-radius: 10px;
+
+}
+.title{
+
+    margin-top: 80px;
+    font-size: 30px;
+    font-weight: 500;
+
+}
+.login-body{
+
+    margin-top: 50px;
+
+
+}
+.form-control{
+
+    width: 330px;
+    height: 40px;
+    margin-bottom: 20px;
+
+}
+.btn{
+
+    margin-top: 90px;
+    width: 330px;
+    height: 45px;
+    background-color: green;
+    border-radius: 10px;
+
+
+}
+.login-option{
+
+    margin-top: -30px;
+    margin-left: 120px;
+}
+.login-option a {
+    color: #333; /* 원하는 색상으로 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+    font-size: 12px;
+    font-weight: 500;
+
+}
+
+.login-option a:hover {
+    color: #007bff; /* 호버 시 색상 변경 (선택 사항) */
+    text-decoration: underline; /* 호버 시 밑줄 추가 (선택 사항) */
+}
+@media (max-width:768px) {
+
+    .login{
+
+        margin-left:-400px;
+    }
+
+}

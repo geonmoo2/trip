@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .main1{
+
+           width: 100%;
+           height: 480px;
+           border: 0px solid black;
+           background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230828/pngtree-the-view-of-the-city-in-southern-seoul-kore-image_13126420.jpg");
+           background-size: 100% 128%;
+           margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+    <main>
+        <div class="main1"></div>
+            <div class="main2">
+
+                <div class="main-content">
+                    <div class="main-content-text">
+                        <h1>제주도 인기 관광명소</h1>
+
+
+                        <div>
+                            <span>섬 전체가 하나의 거대한 관광자원인 제주도. 에메랄드빛 물빛이 인상적인 협재 해수욕장은 제주 대표 여행지며, 파도가 넘보는 주상절리와 바다 위 산책로인 용머리 해안은 제주에서만 볼 수 있는 천혜의 자연경관으로 손꼽힌다. 드라마 촬영지로 알려진 섭지코스는 꾸준한 사랑을 받고 있으며 한라봉과 흑돼지, 은갈치 등은 제주를 대표하는 음식이다.</span>
+                        </div>
+
+
+
+                    </div>
+                    <div class="content1">
+
+                        <div class="s1">
+                            <span class="material-symbols-outlined" id="btn1">keyboard_double_arrow_left</span>
+                            <div class="slides">
+
+                                <a href="/content/content26">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220727_54%2F16588884861686X7rQ_JPEG%2F4.JPG" alt="">
+                                </a>
+                                <a href="/content/content26">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fnaverbooking-phinf.pstatic.net%2F20240910_183%2F1725930795585f93Mc_JPEG%2F%25B0%25A1%25C0%25BB_03_%25BA%25B9%25BB%25E7.jpg" alt="">
+                                </a>
+                                <a href="/content/content26">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fnaverbooking-phinf.pstatic.net%2F20240910_154%2F1725930795765qRH0D_JPEG%2F%25B0%25A1%25C0%25BB_04_%25BA%25B9%25BB%25E7.jpg" alt="">
+                                </a>
+
+                                <a href="/content/content26">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAUTo9TAbpMFs-66W088-ZX37w0GxV6gyrHA&s" alt="">
+                                </a>
+                            </div>
+                            <span class="material-symbols-outlined" id="btn2">keyboard_double_arrow_right</span>
+                            <div class="paginate">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                        <div class="s1-text">
+                            <h2>01.</h2>
+                            <div class="s1-text1">
+                                <h1>카멜리아힐</h1>
+                            </div>
+                            <div class="s1-text2">
+                                <span>안덕면 상창리 172,000㎡에 조성된 카멜리아힐은 세계에서 가장 큰 동백꽃을 비롯하여 가장 일찍 피는 동백꽃, 향기를 내는 동백꽃에 이르기까지 전 세계 500여 종 6000여 그루의 동백나무가 한데 모여 있다. 카멜리아힐은 동백과 함께 야자수 등 각종 조경수가 함께 어우러진 수목원이기도 하다. 야생화 코너를 비롯해 넓은 잔디광장, 생태연못 등도 골고루 갖추고 있다. 초가 별장과 목조 별장, 스틸하우스, 콘도형 별장 등이 있다.
+                                    </span>
+                                <div><h5>별점 평균</h5>
+                                    <div class="average-stars-2" id="rating-1">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                    </div>
+                                    <span id="average-rating" th:text="${#numbers.formatDecimal(averageRatings[26L] != null ? averageRatings[26L] : 0.0, 1, 1)}">데이터 없음</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn3">arrow_circle_left</span>
+                        <div class="content1-text">
+                            <!-- 첫 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 0}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[0].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[0].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[0].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 두 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 1}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[1].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[1].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span   th:text="${contentReviews[1].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 세 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 2}">
+
+                                <p class="review-user"><span th:text="${contentReviews[2].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[2].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[2].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 네 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 3}">
+
+                                <p class="review-user"><span th:text="${contentReviews[3].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[3].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span  th:text="${contentReviews[3].comment}">리뷰 없음</span></p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn4">arrow_circle_right</span>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content22">
+                            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fpup-review-phinf.pstatic.net%2FMjAyNDExMjJfMjc1%2FMDAxNzMyMjM3ODk0Mzc1.5ynXh98avVlJuYAQ_NFbtnsHb2oYGo3auuEfHSpjQNEg.z44Se1q_ARdyip3ZdYXoyEopOv6yk_3YbD6jekx4cksg.JPEG%2F20241121_173301.jpg%3Ftype%3Dw1500_60_sharpen" alt="">
+                        </a>
+                        <div>
+                            <h3>02.</h3>
+                            <h2>스누피가든</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating2" th:text="${#numbers.formatDecimal(averageRatings[27L] != null ? averageRatings[27L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-2">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>스누피 가든 하우스는 감정에 솔직하고 개성 있는 피너츠 친구들을 만나 그들 간의 상호 관계를 통한 공감과 위로의 메시지를 얻는 곳이다. 가든 하우스의 테마홀은 피너츠 에피소드에 담긴 일상의 이야기와 ‘Peanuts, Nature & Life’를 주제로 나의 일상을 연결할 수 있는 공간이다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content23">
+                            <img src="https://dimg04.tripcdn.com/images/1lo4g12000d0n8c3b5A3D.jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>03.</h3>
+                            <h2>9.81파크 제주</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating3" th:text="${#numbers.formatDecimal(averageRatings[28L] != null ? averageRatings[28L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-3">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>9.81 파크는 제주도 애월에 위치한 친환경 레이싱 테마파크로, 중력을 이용하여 속도를 낸다. 제주 바다를 바라보며 중력가속도(9.81㎨)만으로 스피드를 즐기는 다운힐 레이싱, 한라산 방향을 바라보며 자동회차로 여유롭게 즐기는 업힐 레이싱을 즐길 수 있다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content24">
+                            <img src="https://api.cdn.visitjeju.net/photomng/imgpath/202408/21/2aa92c1e-5dec-48f0-a3f5-ef5bb271bb51.jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>04.</h3>
+                            <h2>오설록 티뮤지엄</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating4" th:text="${#numbers.formatDecimal(averageRatings[29L] != null ? averageRatings[29L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-4">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>오설록 티뮤지엄은 아모레퍼시픽이 차문화를 소개하고, 널리 보급하고자 2001년 9월에 개관한 국내 최초의 차 박물관이다. 세계적인 디자인 건축 전문사이트인 디자인붐이 선정한 세계 10대 미술관에 오를 만큼 아름다운 경관을 선보이는 티뮤지엄은 연간 180만 명의 관람객이 방문하는 제주 최고 명소이자 문화 공간이다.</span>
+                        </div>
+                    </div>
+                    <div class="content3">
+                        <a href="/content/content25">
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzEyMjVfNjYg%2FMDAxNzAzNTA3NzE4NDI5.Rs7U-G9SziBJXE0GaCr31nHrslW9siZzc-X_cXtW9QUg.Bf7H2dkR2VVzE8TzpPckS0gONaCaSMXuX5utsBWETTIg.JPEG.123mks%2F20231225_091659_%252812%2529.jpeg" alt="">
+                        </a>
+                        <div>
+                            <h3>05.</h3>
+                            <h2>동백포레스트</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating5" th:text="${#numbers.formatDecimal(averageRatings[30L] != null ? averageRatings[30L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-5">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>동백포레스트는 하얀 유럽풍 건물과 동글동글한 동백나무로 이국적인 분위기를 지닌 수목원이다. 야외 정원은 물론 건물 내 카페가 있어 음료와 디저트를 즐기며 카페 1층의 창을 배경 삼아 사진 찍을 수 있는 포토존이 있다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slides img');
+            const buttons = document.querySelectorAll('.paginate .circle');
+            const btnPrev = document.getElementById('btn1');
+            const btnNext = document.getElementById('btn2');
+
+            let currentIndex = 0;
+            function updateSlide(index) {
+                slides.forEach((slide, i) => slide.style.display = i == index ? 'block' : 'none');
+                buttons.forEach((button, i) => button.classList.toggle('selected' , i ===index));
+
+            }
+            function showNextSlide() {
+
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlide(currentIndex);
+
+            }
+            function showPrevSlide() {
+
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlide(currentIndex);
+            }
+            btnNext.addEventListener('click', showNextSlide);
+            btnPrev.addEventListener('click', showPrevSlide);
+
+            buttons.forEach((button, i)=>{
+                button.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlide(currentIndex);
+
+                });
+            });
+
+            //Initialize the first slide
+            updateSlide(currentIndex);
+
+            const contentText = document.querySelector('.content1-text');
+            const contentDivs = contentText.querySelectorAll('div');
+            const btnLeft = document.getElementById('btn3');
+            const btnRight = document.getElementById('btn4');
+
+            let currentContentIndex = 0;
+
+            btnLeft.addEventListener('click' , function () {
+                if(currentContentIndex > 0) {
+
+                    currentContentIndex--;
+
+                }
+                updateContentSlide();
+            });
+
+            btnRight.addEventListener('click',function(){
+                if(currentContentIndex <contentDivs.length - 2) {
+                    currentContentIndex++;
+
+                }
+                updateContentSlide();
+            });
+            function updateContentSlide() {
+                const slideWidth = contentDivs[0].offsetWidth;
+                contentText.style.transform = `translateX(${-currentContentIndex * slideWidth+60}px)`;
+
+            }
+            updateContentSlide();
+
+
+        });
+
+            <!-- 동적으로 만든 별점-->
+                document.addEventListener('DOMContentLoaded', function () {
+                    // 별점 컨테이너와 별점 값 매핑
+                    const ratings = [
+                        { id: 'rating-1', value: parseFloat(document.querySelector('#average-rating')?.textContent.trim()) || 0 },
+                        { id: 'rating-2', value: parseFloat(document.querySelector('#average-rating2')?.textContent.trim()) || 0 },
+                        { id: 'rating-3', value: parseFloat(document.querySelector('#average-rating3')?.textContent.trim()) || 0 },
+                        { id: 'rating-4', value: parseFloat(document.querySelector('#average-rating4')?.textContent.trim()) || 0 },
+                        { id: 'rating-5', value: parseFloat(document.querySelector('#average-rating5')?.textContent.trim()) || 0 }
+                    ];
+
+                    // 각 컨테이너의 별점 색칠
+                    ratings.forEach(({ id, value }) => {
+
+                        console.log(`ID: ${id}, Value: ${value}`);
+
+                        const container = document.getElementById(id);
+                        if (!container) {
+                            console.error(`Container with ID "${id}" not found.`);
+                            return;
+                        }
+
+                        const stars = container.querySelectorAll('.red-star');
+                        stars.forEach((star, index) => {
+                            const starValue = index + 1;
+                            if (value >= starValue) {
+                                star.style.color = 'gold'; // 빨간 별
+                            } else if (value > starValue - 1) {
+                                // 반쪽 별
+                                star.style.color = 'gold';
+                                star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                                star.style.webkitBackgroundClip = 'text';
+                                star.style.webkitTextFillColor = 'transparent';
+                            } else {
+                                star.style.color = 'lightgray'; // 회색 별
+                            }
+                        });
+                    });
+                });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 별점 생성 및 적용 함수
+            function createAndApplyStars(containerSelector, averageRating) {
+                const container = document.querySelector(containerSelector);
+                if (!container) {
+                    console.error(`Container ${containerSelector} not found`);
+                    return;
+                }
+
+                // 별점 초기화 및 생성
+                container.innerHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement('span');
+                    star.classList.add('red-star');
+                    star.textContent = '★';
+
+                    // 별 색상 설정
+                    if (averageRating >= i) {
+                        star.style.color = 'gold'; // 빨간 별
+                    } else if (averageRating > i - 1) {
+                        // 반쪽 별 처리
+                        star.style.color = 'gold';
+                        star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                        star.style.webkitBackgroundClip = 'text';
+                        star.style.webkitTextFillColor = 'transparent';
+                    } else {
+                        star.style.color = 'lightgray'; // 기본 별
+                    }
+
+                    container.appendChild(star);
+                }
+            }
+
+            // 평균 별점 가져오기 및 적용
+            const averageRatingElement = document.getElementById('average-rating'); // ID 선택
+            if (averageRatingElement) {
+                const averageRating = parseFloat(averageRatingElement.textContent.trim()) || 0;
+                console.log("평균 별점:", averageRating); // 디버깅용 로그
+                createAndApplyStars('.average-stars-2', averageRating);
+            } else {
+                console.error("평균 별점을 가져올 수 없습니다.");
+            }
+        });
+    </script>
+
+</body>
+</html>

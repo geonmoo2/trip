@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/main/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .main1{
+
+           width: 100%;
+           height: 480px;
+           border: 0px solid black;
+           background-image: url("https://png.pngtree.com/thumb_back/fw800/background/20230901/pngtree-rice-fields-from-the-mountaintop-image_13114927.jpg");
+           background-size: 100% 128%;
+           margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
+    <main>
+        <div class="main1"></div>
+            <div class="main2">
+
+                <div class="main-content">
+                    <div class="main-content-text">
+                        <h1>충청도 인기 관광명소</h1>
+
+
+                        <div>
+                            <span>백제의 발자취를 고스란히 안고 있는 충청남도. 백제의 수도였던 공주와 부여가 위치해 있어 역사적인 사찰과 문화재를 곳곳에서 만날 수 있다. 또한 당진 왜목마을에서는 서해의 일출을 볼 수 있고, 보령에서는 세계 각지에서 온 여행객들과 온몸에 진흙을 묻히며 마음껏 놀 수 있는 머드축제를 즐기는 색다른 경험을 할 수 있다.</span>
+                        </div>
+
+
+
+                    </div>
+                    <div class="content1">
+
+                        <div class="s1">
+                            <span class="material-symbols-outlined" id="btn1">keyboard_double_arrow_left</span>
+                            <div class="slides">
+
+                                <a href="/content/content11">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_266%2F1441006691781VjuUq_JPEG%2FSUBMIT_1318825436850_11620331.jpg" alt="">
+                                </a>
+                                <a href="/content/content11">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_187%2F14410066920008JQ1t_JPEG%2F11620331_1.jpg" alt="">
+                                </a>
+                                <a href="/content/content11">
+                                    <img src="https://cdn.pharmnews.com/news/photo/202311/233552_107022_1626.jpg" alt="">
+                                </a>
+
+                                <a href="/content/content11">
+                                    <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_228%2F1441006692691SIjlx_JPEG%2FSUBMIT_1318825608098_11620331.jpg" alt="">
+                                </a>
+                            </div>
+                            <span class="material-symbols-outlined" id="btn2">keyboard_double_arrow_right</span>
+                            <div class="paginate">
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                        <div class="s1-text">
+                            <h2>01.</h2>
+                            <div class="s1-text1">
+                                <h1>독립기념관</h1>
+                            </div>
+                            <div class="s1-text2">
+                                <span>독립기념관은 지나온 우리 민족의 국난 극복사와 국가 발전사에 관한 자료를 수집하고 보존하며 전시, 조사, 연구를 통해 민족 문화의 정체성을 올바르게 인식하고, 자긍심을 느낄 수 있도록 매진하고 있습니다. 푸른 자연에 둘러싸인 독립기념관에서 자랑스러운 우리 역사를 보고 배울 수 있다.</span>
+                                <div><h5>별점 평균</h5>
+                                    <div class="average-stars-2" id="rating-1">
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                        <span class="red-star">★</span>
+                                    </div>
+                                    <span id="average-rating" th:text="${#numbers.formatDecimal(averageRatings[11L] != null ? averageRatings[11L] : 0.0, 1, 1)}">데이터 없음</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn3">arrow_circle_left</span>
+                        <div class="content1-text">
+                            <!-- 첫 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 0}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[0].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[0].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[0].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 두 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 1}">
+
+                                <p class="review-user"> <span th:text="${contentReviews[1].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[1].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span   th:text="${contentReviews[1].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 세 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 2}">
+
+                                <p class="review-user"><span th:text="${contentReviews[2].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[2].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span th:text="${contentReviews[2].comment}">리뷰 없음</span></p>
+                            </div>
+
+                            <!-- 네 번째 리뷰 -->
+                            <div th:if="${contentReviews.size() > 3}">
+
+                                <p class="review-user"><span th:text="${contentReviews[3].username}">익명</span></p>
+                                <p class="review-star">
+                                    <span class="review-star-text" th:each="i : ${#numbers.sequence(1, 5)}"
+                                          th:classappend="${i <= contentReviews[3].rating} ? 'filled-star' : 'empty-star'">★</span>
+                                </p>
+                                <p class="review-content"><span  th:text="${contentReviews[3].comment}">리뷰 없음</span></p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined" id="btn4">arrow_circle_right</span>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content12">
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDExMTdfMTQz%2FMDAxNzMxODM4NjM2NTIx.rZ8lJ80JVdMgPqFU1F7wv0FVbBKkj3AwTI0AaFboWrQg.t8iBE6CNllO2u0JxEsWoTrBqeJRzCufVwqtKQToKYa0g.JPEG%2F%25BF%25C2%25BA%25FB%25C0%25DA%25BF%25AC%25C8%25DE%25BE%25E7%25B8%25B2_126.JPG" alt="">
+                        </a>
+                        <div>
+                            <h3>02.</h3>
+                            <h2>온빛자연휴양림</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating2" th:text="${#numbers.formatDecimal(averageRatings[12L] != null ? averageRatings[12L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-2">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>온빛자연휴양림은 충남 논산시에 위치한 탄소상쇄 숲이다. 고즈넉하고 청정한 산책길을 걷다 보면 하늘 높이 자라난 메타세쿼이아나무 숲과 잔잔한 호수가 어우러진 아름답고 이국적인 풍경을 볼 수 있다. 여름엔 푸르게 가을엔 주황빛으로 물든다. 계절별로 아름답게 피어나는 온빛자연휴양림에서의 자연친화적인 산책을 즐길 수 있다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content13">
+                            <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20190920_200%2F1568958717150yxASt_JPEG%2FruD_zri9DJ-ZvPVuhLt4V2Rx.jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>03.</h3>
+                            <h2>국립생태원</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating3" th:text="${#numbers.formatDecimal(averageRatings[13L] != null ? averageRatings[13L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-3">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>국립생태원 에코리움은 세계 5대 기후를 재현한 열대관, 사막관, 지중해관, 온대관, 극지관 등 각 기후 대표 동식물 1,600여 종이 함께 전시되어 살아있는 생태계를 생생하게 체험할 수 있다. 또한 생태계의 기본 개념을 배울 수 있는 상설주제전시관 1·2, 생태계 주제가 열리는 기획전시관이 있다.</span>
+                        </div>
+                    </div>
+                    <div class="content2">
+                        <a href="/content/content14">
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA0MjZfMjY4%2FMDAxNzE0MTEwOTgxMzUx.ZFPvq4x5Jm99UhkXpMuhwMmmE_Ycot4DUtPH4hry1rQg.OUkPuB6YxfogNZ0pe6CdguoHlx7WTkTReEYFeHnXp-8g.JPEG%2FIT_tc03950005705.jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>04.</h3>
+                            <h2>청산수목원</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating4" th:text="${#numbers.formatDecimal(averageRatings[14L] != null ? averageRatings[14L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-4">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>인생샷 명소 청산수목원은 연중 무휴로 운영되며, 봄부터 가을까지 연중 축제가 열립니다. 봄부터 수선화, 튤립, 홍가시, 꽃팡포, 수국, 연꽃, 팜파스 축제가 열립니다. 아울러 미로정원과 알파카동물농장을 관람 하실 수 있습니다.</span>
+                        </div>
+                    </div>
+                    <div class="content3">
+                        <a href="/content/content15">
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA5MjZfMjc5%2FMDAxNjk1NzI5NzkxNTg4.9Ww4f7_cCiWPGd3WeFEuh7lxAhH8xfj8K9D8dRHK5HAg.ZI_LzlXo-N_1SofcSIjiQmvEV5mmG2kKWf5XEdlRFbcg.JPEG.jjh901108%2F20230909_152522.jpg" alt="">
+                        </a>
+                        <div>
+                            <h3>05.</h3>
+                            <h2>외암민속마을</h2>
+                            <h3  style="margin-left: 50px; margin-top: 20px;"><span id="average-rating5" th:text="${#numbers.formatDecimal(averageRatings[15L] != null ? averageRatings[15L] : 0.0, 1, 1)}">데이터 없음</span></h3>
+                            <div class="average-stars-2" id="rating-5">
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                                <span class="red-star">★</span>
+                            </div>
+                            <span>마을 곳곳에 냇물이 흐르며 입지가 좋고 일조량이 많으며 겨울에 북서계절풍울 막아 주는 등 지형적 이점이 있어 일찍부터 마을이 형성되었다. 500여 년 전에는 강씨(姜氏)와 목씨(睦氏)가 살았다고 전해진다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slides img');
+            const buttons = document.querySelectorAll('.paginate .circle');
+            const btnPrev = document.getElementById('btn1');
+            const btnNext = document.getElementById('btn2');
+
+            let currentIndex = 0;
+            function updateSlide(index) {
+                slides.forEach((slide, i) => slide.style.display = i == index ? 'block' : 'none');
+                buttons.forEach((button, i) => button.classList.toggle('selected' , i ===index));
+
+            }
+            function showNextSlide() {
+
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlide(currentIndex);
+
+            }
+            function showPrevSlide() {
+
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                updateSlide(currentIndex);
+            }
+            btnNext.addEventListener('click', showNextSlide);
+            btnPrev.addEventListener('click', showPrevSlide);
+
+            buttons.forEach((button, i)=>{
+                button.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlide(currentIndex);
+
+                });
+            });
+
+            //Initialize the first slide
+            updateSlide(currentIndex);
+
+            const contentText = document.querySelector('.content1-text');
+            const contentDivs = contentText.querySelectorAll('div');
+            const btnLeft = document.getElementById('btn3');
+            const btnRight = document.getElementById('btn4');
+
+            let currentContentIndex = 0;
+
+            btnLeft.addEventListener('click' , function () {
+                if(currentContentIndex > 0) {
+
+                    currentContentIndex--;
+
+                }
+                updateContentSlide();
+            });
+
+            btnRight.addEventListener('click',function(){
+                if(currentContentIndex <contentDivs.length - 2) {
+                    currentContentIndex++;
+
+                }
+                updateContentSlide();
+            });
+            function updateContentSlide() {
+                const slideWidth = contentDivs[0].offsetWidth;
+                contentText.style.transform = `translateX(${-currentContentIndex * slideWidth+60}px)`;
+
+            }
+            updateContentSlide();
+
+
+        });
+
+            <!-- 동적으로 만든 별점-->
+                document.addEventListener('DOMContentLoaded', function () {
+                    // 별점 컨테이너와 별점 값 매핑
+                    const ratings = [
+                        { id: 'rating-1', value: parseFloat(document.querySelector('#average-rating')?.textContent.trim()) || 0 },
+                        { id: 'rating-2', value: parseFloat(document.querySelector('#average-rating2')?.textContent.trim()) || 0 },
+                        { id: 'rating-3', value: parseFloat(document.querySelector('#average-rating3')?.textContent.trim()) || 0 },
+                        { id: 'rating-4', value: parseFloat(document.querySelector('#average-rating4')?.textContent.trim()) || 0 },
+                        { id: 'rating-5', value: parseFloat(document.querySelector('#average-rating5')?.textContent.trim()) || 0 }
+                    ];
+
+                    // 각 컨테이너의 별점 색칠
+                    ratings.forEach(({ id, value }) => {
+
+                        console.log(`ID: ${id}, Value: ${value}`);
+
+                        const container = document.getElementById(id);
+                        if (!container) {
+                            console.error(`Container with ID "${id}" not found.`);
+                            return;
+                        }
+
+                        const stars = container.querySelectorAll('.red-star');
+                        stars.forEach((star, index) => {
+                            const starValue = index + 1;
+                            if (value >= starValue) {
+                                star.style.color = 'gold'; // 빨간 별
+                            } else if (value > starValue - 1) {
+                                // 반쪽 별
+                                star.style.color = 'gold';
+                                star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                                star.style.webkitBackgroundClip = 'text';
+                                star.style.webkitTextFillColor = 'transparent';
+                            } else {
+                                star.style.color = 'lightgray'; // 회색 별
+                            }
+                        });
+                    });
+                });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 별점 생성 및 적용 함수
+            function createAndApplyStars(containerSelector, averageRating) {
+                const container = document.querySelector(containerSelector);
+                if (!container) {
+                    console.error(`Container ${containerSelector} not found`);
+                    return;
+                }
+
+                // 별점 초기화 및 생성
+                container.innerHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement('span');
+                    star.classList.add('red-star');
+                    star.textContent = '★';
+
+                    // 별 색상 설정
+                    if (averageRating >= i) {
+                        star.style.color = 'gold'; // 빨간 별
+                    } else if (averageRating > i - 1) {
+                        // 반쪽 별 처리
+                        star.style.color = 'gold';
+                        star.style.background = 'linear-gradient(to right, gold 50%, lightgray 50%)';
+                        star.style.webkitBackgroundClip = 'text';
+                        star.style.webkitTextFillColor = 'transparent';
+                    } else {
+                        star.style.color = 'lightgray'; // 기본 별
+                    }
+
+                    container.appendChild(star);
+                }
+            }
+
+            // 평균 별점 가져오기 및 적용
+            const averageRatingElement = document.getElementById('average-rating'); // ID 선택
+            if (averageRatingElement) {
+                const averageRating = parseFloat(averageRatingElement.textContent.trim()) || 0;
+                console.log("평균 별점:", averageRating); // 디버깅용 로그
+                createAndApplyStars('.average-stars-2', averageRating);
+            } else {
+                console.error("평균 별점을 가져올 수 없습니다.");
+            }
+        });
+    </script>
+
+</body>
+</html>

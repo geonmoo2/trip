@@ -1,0 +1,432 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'PreT';
+    font-weight: 100;
+    font-style: normal;
+    src: url('/font/Pretendard-Thin.eot');
+    src: local('��'),
+    url('/font/Pretendard-Thin.woff') format('woff'),
+    url('/font/Pretendard-Thin.woff2') format('woff2'),
+    url('/font/Pretendard-Thin.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Pre';
+    font-weight: 300;
+    font-style: normal;
+    src: url('/font/Pretendard-Light.eot');
+    src: local('��'),
+    url('/font/Pretendard-Light.woff') format('woff'),
+    url('/font/Pretendard-Light.woff2') format('woff2'),
+    url('/font/Pretendard-Light.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreR';
+    font-weight: 400;
+    font-style: normal;
+    src: url('/font/Pretendard-Regular.eot');
+    src: local('��'),
+    url('/font/Pretendard-Regular.woff') format('woff'),
+    url('/font/Pretendard-Regular.woff2') format('woff2'),
+    url('/font/Pretendard-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreM';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/font/Pretendard-Medium.eot');
+    src: local('��'),
+    url('/font/Pretendard-Medium.woff') format('woff'),
+    url('/font/Pretendard-Medium.woff2') format('woff2'),
+    url('/font/Pretendard-Medium.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreSB';
+    font-weight: 700;
+    font-style: normal;
+    src: url('/font/Pretendard-SemiBold.eot');
+    src: local('��'),
+    url('/font/Pretendard-SemiBold.woff') format('woff'),
+    url('/font/Pretendard-SemiBold.woff2') format('woff2'),
+    url('/font/Pretendard-SemiBold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'PreEB';
+    font-weight: 900;
+    font-style: normal;
+    src: url('/font/Pretendard-ExtraBold.eot');
+    src: local('��'),
+    url('/font/Pretendard-ExtraBold.woff') format('woff'),
+    url('/font/Pretendard-ExtraBold.woff2') format('woff2'),
+    url('/font/Pretendard-ExtraBold.otf') format('opentype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* header */
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+}
+
+
+/* main */
+.section-main {
+
+    display: flex;
+    background-color: #f4f4f4;
+
+}
+
+.section-mid {
+
+
+    background-color: #f4f4f4;
+
+
+
+}
+
+/* main-mid */
+.title{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+.title>h2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.section-left {
+    background-color: #f4f4f4; /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1000px; /* 부모 요소의 높이를 참조 */
+    margin-top: 100px; /* 상단 여백 설정 */
+
+}
+
+.section-right {
+    background-color: #f4f4f4; /* 백그라운드 컬러 설정 */
+    width: 300px; /* 원하는 너비 설정 */
+    height: 1000px; /* 고정 높이 설정 */
+    margin-top: 100px;
+    margin-left: 1400px;
+
+}
+
+/* 게시판 디자인 */
+
+
+/* 섹션 스타일 */
+.board-details, .comment-form, .comments-section {
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.board-details h2 {
+    margin-bottom: 20px;
+}
+
+/* 게시글 정보 스타일 */
+.board-line1 {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+
+.board-line1 div {
+    margin-right: 20px;
+}
+
+/* 게시글 내용 스타일 */
+.board-details textarea {
+    width: 95%;
+    height: 200px;
+    resize: none;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+/* 댓글 작성 폼 스타일 */
+.comment-form {
+    margin-bottom: 20px;
+}
+
+.comment-form > div {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* input 필드 간의 여백 조정 */
+}
+
+.comment-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.comment-form input:nth-child(1) {
+    width: 150px; /* 필요에 따라 너비 조정 */
+}
+
+.comment-form input:nth-child(2) {
+    width: 300px; /* 필요에 따라 너비 조정 */
+}
+
+.comment-form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+/* 댓글 섹션 스타일 */
+.comments-section {
+    margin-top: 30px;
+}
+
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.comment-item .comment-content {
+    flex: 1;
+}
+
+.comment-item .comment-meta {
+    flex: 0 0 auto;
+    text-align: right;
+    color: #888;
+}
+
+/* 버튼 스타일 */
+.content-bottom-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.content-bottom-btn > button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 70px;
+    height: 35px;
+    margin-right: 7px;
+}
+
+.content-bottom-btn > button:hover {
+    background-color: #0056b3;
+}
+
+.material-icons-outlined delete-button {
+
+    margin-bottom: 100px;
+
+
+}
+
+.comment-item {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.delete-button {
+    cursor: pointer;
+    color: red;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.comment-meta {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #555;
+}
+
+.comment-content {
+    padding-right: 45px;
+    word-wrap: break-word;
+}
+
+
+/* footer */
+
+
+.board_list_wrap {
+
+    margin-top: 180px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 50px;
+    width: 1300px;
+    border-radius: 15px;
+    height: 750px;
+    margin-left: 50px;
+
+
+}
+
+.board_list_wrap > .board_list {
+
+    width: 1200px;
+    height: 300px;
+    border-top: 2px solid navy;
+
+
+}
+
+.board_list_wrap > .board_list th, .board_list td {
+
+    padding: 10px;
+    font-size: 14px;
+
+
+}
+
+.board_list_wrap > .board_list td {
+
+    text-align: center;
+
+}
+
+.board_list_wrap > .board_list tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.board_list_wrap > .board_list tbody tr td:nth-child(2):hover {
+
+    text-decoration: underline;
+
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+select, input[type="text"], button[type="submit"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    width: 300px; /* 검색창 길이를 늘림 */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+tr > td > a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+tr > td > a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styles */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* 페이지 번호 */
+.pagination > span > span {
+    margin-right: 10px;
+    margin-top: 30px;
+    font-size: 19px; /* 글자 크기를 20px로 설정 */
+}
+
+/* >> 이랑 > CSS */
+.pagination > a {
+    margin-right: 10px;
+}

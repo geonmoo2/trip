@@ -1,0 +1,495 @@
+*{
+    padding: 0px;
+    margin: 0px;
+
+
+}
+
+.logo{
+    margin-top: 50px;
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    margin-left: 1120px;
+
+
+}
+
+
+
+/* banner1 에 대한 설정 */
+.head{
+
+    border-radius: 30px;
+    
+    border: 0px solid black;
+    width: 1100px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    
+    z-index: 10;
+    height: 400px;
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+
+}
+.head>a{
+    z-index: 20;
+    width: 250px;
+    height: 350px;
+    margin-left: 37px;
+    text-decoration: none;
+    transition: transform 0.5s ease;
+
+}
+.head>a>div{
+
+    border-radius: 30px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.8);
+    
+
+}
+.head>a>div>h1{
+
+
+    margin-top: 20px;
+    margin-left: 20px;
+    color:white;
+    font-size:30px;
+    line-height:2.5;
+ 
+}
+
+
+
+.slide1{
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://img.freepik.com/free-photo/vertical-view-of-vasco-da-gama-bridge-by-night-lisbon_268835-1339.jpg');
+
+}
+.slide2{
+
+    background-size: 230px ,330px;
+    width: 230px;
+    height: 330px;
+
+
+    background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MjhfMTM4%2FMDAxNjE5NTkyNzA5MTM4.F9HWj3PU4Qn_ux-ZnCVFOiKzXZw0ogIR3cP9jgCdzWgg.X0Tq8Vh4Bg3YjeQWqw5N0Mk4y9_q8BFnGeheV9MiWUEg.JPEG.5skylark%2F5.JPG&type=sc960_832');
+
+
+}
+.slide3{
+
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi3.ruliweb.com%2Fimg%2F22%2F11%2F26%2F184b0fec58a4ad868.jpg&type=sc960_832');
+
+
+}
+.slide4{
+
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MDdfMTU3%2FMDAxNTk0MTI0Nzc4ODE0.-33pViIubp-IipaDxb9TIzq9_vPAhYtqBmYL5ZKD6Ugg.T1sTLjtApLw9AL2tbYBIC4fQQhyuOCCA6zD9DwcO5p4g.JPEG.mcst_pr%2F2020_%25C6%25AF%25BA%25B0_%25BF%25A9%25C7%25E0%25C1%25D6%25B0%25A3_6.jpg&type=sc960_832');
+
+}
+.slide5{
+
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODA5MjhfNjEg%2FMDAxNTM4MTM3NTQ1NDAy.5ZGOUjzQnGVBNPqiE-hIm7HaQKJb0raVTY2Ae_Z-6q0g.mYVfhNzZ4KLy7e8THVHf6Q118B2RRjsTluUch_EXcTAg.JPEG.a_chibee%2FIMG_1573.JPG&type=sc960_832');
+
+}
+.slide6{
+
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMjBfMTI1%2FMDAxNjA1ODUzNDM2ODc5.dhdEUC7RWQxTrxpf8nZXSdkJroPWe3nCFU8g6wBYWv8g.3IskbQBjgqvx0Aq2C2uM2bTLS0fvI_4YS3HsoZbTLAUg.JPEG.odoctor5%2FIMG_2863.JPG&type=sc960_832');
+
+}
+.main-center {
+    
+    width: 50%; /* 100% 대신 80%로 줄여서 양쪽 여백을 확보 */
+    margin: 0 auto; /* 가로 중앙 정렬 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 배치 */
+    align-items: center; /* 세로 중앙 배치 (선택 사항) */
+    flex-direction: column; /* 세로 방향으로 자식 요소 배치 */
+
+}
+.main-center>h1{
+
+    margin-top: 70px;
+    font-size: 3.125rem;
+
+
+}
+
+.slide7{
+
+
+    width: 230px;
+    height: 330px;
+
+    background-size: 230px 330px;
+    background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMjBfMTI1%2FMDAxNjA1ODUzNDM2ODc5.dhdEUC7RWQxTrxpf8nZXSdkJroPWe3nCFU8g6wBYWv8g.3IskbQBjgqvx0Aq2C2uM2bTLS0fvI_4YS3HsoZbTLAUg.JPEG.odoctor5%2FIMG_2863.JPG&type=sc960_832');
+
+}
+
+
+.banner1{
+    pointer-events: auto;
+    margin-top: 100px;
+    border:0px solid black;
+    display: flex;
+    justify-content: center;
+
+}
+
+.banner1>.material-symbols-outlined{
+    font-size: 70px;
+    z-index: 99;
+    margin-left:520px;
+
+    margin-top: 150px;
+    margin-right: 520px;
+    color:green;
+    
+}
+
+/* banner2 에 대한 설정  */
+
+.banner2 {
+    margin-top: 300px;
+    margin-bottom:-50px;
+    background-color: white;
+    width: 1100px;
+    height: 300px;
+
+    overflow: hidden;
+    position: relative;
+    box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+    border-radius: 30px;
+    border: 2px solid rgba(0, 0, 0, 0.3); /* 30% 불투명한 검정색 */
+}
+
+.banner2 > div {
+    width: 1300px;
+    height: 350px;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transition: left 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+}
+
+.b1 { 
+    background-image: url("https://i.ytimg.com/vi/ejbosXIjUHM/maxresdefault.jpg"); 
+    background-size: 1100px 300px;
+
+
+}
+.b2 { 
+    background-image: url("https://www.joseilbo.com/gisa_img_origin/15947742671594774267_pabw_origin.jpg"); 
+    background-size: 1100px 300px;
+
+
+}
+.b3 { 
+    background-image: url("https://www.seoulfringefestival.net:5632/upload_img/festival/main/(1741-650px)[2].png"); 
+    background-size: 1100px 300px;
+
+
+}
+.b4 { 
+    background-image: url("https://www.story-w.co.kr/resource/202310/contents/whz5d1ue4wrkenr5.png"); 
+    background-size: 1100px 300px;
+}
+.b5 { 
+    background-image: url("https://at.agromarket.kr/resources/user/img/banner_231129.jpg"); 
+    background-size: 1100px 300px;
+}
+
+/* -----------------------main3          */
+
+.main3{
+    
+    margin-top: 150px;
+    margin-bottom: 200px;
+    width:1100px;
+}
+.f1{
+
+    margin-top: 100px;
+    border: 0px solid black;
+    display: flex;
+    width: 1100px;
+
+}
+.f1>.a1{
+    color: inherit; /* 부모 요소의 색상 상속 */
+    text-decoration: none; /* 밑줄 없애기 */
+    width:210px;
+    height:300px;
+    margin-left:23px;
+}
+
+.f1>a{
+    color: inherit; /* 부모 요소의 색상 상속 */
+    text-decoration: none; /* 밑줄 없애기 */
+    width:210px;
+    height:300px;
+    margin-left:75px;
+}
+.f1>a>div{
+
+    border: 0px solid black;
+    width: 270px;
+    height: 350px;
+    margin-right: 40px;
+}
+.g1>.g1-img1{ 
+    box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+    border-radius: 30px;
+    margin-bottom: 20px;
+    background-image: url("https://blog.kakaocdn.net/dn/HmOL0/btq7QPKJucK/mboaKnLFHYr87Kunci1TVK/img.jpg");
+    background-size: 210px 210px;
+    width:210px;height: 210px;
+}
+.g1>.g1-img2{
+    box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+    border-radius: 30px;
+    margin-bottom: 20px;
+    background-image: url("https://www.koreanfolk.co.kr/images/event/display/choga_img08.jpg");
+    background-size: 210px 210px;
+    width:210px;height: 210px;
+}
+.g1>.g1-img3{
+      box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+      border-radius: 30px;
+      margin-bottom: 20px;
+      background-image: url("https://ldb-phinf.pstatic.net/20230227_273/1677460525934zcFeg_JPEG/DSC04460.JPG?type=f750_420_60_sharpen");
+      background-size: 210px 210px;
+      width:210px;height: 210px;
+  }
+.g1>.g1-img4{
+       box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+       border-radius: 30px;
+       margin-bottom: 20px;
+       background-image: url("https://image.kkday.com/v2/image/get/w_1900%2Cc_fit%2Cq_55/s1.kkday.com/product_104858/20240110045949_bMVo7/jpg");
+       background-size: 220px 210px;
+       width:210px;height: 210px;
+}
+.g1>.g1-img5{
+        box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+        border-radius: 30px;
+        margin-bottom: 20px;
+        background-image: url("https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20150831_266%2F1441006691781VjuUq_JPEG%2FSUBMIT_1318825436850_11620331.jpg");
+        background-size: 210px 210px;
+        width:210px;height: 210px;
+}
+.g1>.g1-img6{
+         box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+         border-radius: 30px;
+         margin-bottom: 20px;
+         background-image: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxODA3MTZfMTAx%2FMDAxNTMxNzE2NDE2NjY4.kfeDSpXFqRnMjxR5rcChPTkDdzNnmUPR_a6SIyyjY-Yg.6R5mWCtVzI8BPo5vXA478pBd9Fkzjrxd-m89HzAJvCcg.JPEG.leebreak%2FDSC00592.jpg%231600x1067");
+         background-size: 210px 210px;
+         width:210px;height: 210px;
+}
+.g1>.g1-img7{
+          box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+          border-radius: 30px;
+          margin-bottom: 20px;
+          background-image: url("https://ldb-phinf.pstatic.net/20240717_104/1721178473012Hs7IA_PNG/KakaoTalk_20240717_100710182.png?type=f750_420_60_sharpen");
+          background-size: 210px 210px;
+          width:210px;height: 210px;
+}
+.g1>.g1-img8{
+           box-shadow: 10px 10px 15px rgba(0.2, 0.2, 0.2, 0.3);
+           border-radius: 30px;
+           margin-bottom: 20px;
+           background-image: url("https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20220727_54%2F16588884861686X7rQ_JPEG%2F4.JPG");
+           background-size: 210px 210px;
+           width:210px;height: 210px;
+}
+.filled-star {
+    color: gold; /* 별이 채워진 경우 */
+    font-size: 20px;
+}
+
+.empty-star {
+    color: lightgray; /* 별이 비어있는 경우 */
+    font-size: 20px;
+}
+.average-stars-2{
+
+    margin-top:5px;
+}
+#average-rating1{margin-left:10px;}
+#average-rating3{margin-left:10px;}
+#average-rating7{margin-left:10px;}
+#average-rating9{margin-left:10px;}
+#average-rating11{margin-left:10px;}
+#average-rating20{margin-left:10px;}
+#average-rating21{margin-left:10px;}
+#average-rating26{margin-left:10px;}
+
+@media (max-width: 768px) {
+
+    nav{
+        height: 140px;
+    }
+
+    .logo{
+        margin-top: 15px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 20px;
+    }
+
+    /* body>h1 조정 */
+    .main-center > h1 {
+
+        margin-left: 20px;
+        font-size: 30px;
+
+    }
+
+    /* banner1 설정 */
+    .banner1{
+
+
+    }
+    #prev-slide{
+
+        margin-left:300px;
+
+    }
+    #next-slide{
+
+        margin-left:350px;
+    }
+
+
+    .head{
+        width:700px;
+        height:250px;
+
+    }
+    .head>a{
+        width:150px;
+        height:200px;
+
+    }
+    .head>a>div{
+        width:150px;
+        height:200px;
+
+    }
+    .head>a>div>h1{
+
+        font-size: 20px;
+    }
+
+    /* banner1의 화살표 크기와 위치 조정 */
+    .banner1 > .material-symbols-outlined {
+        font-size: 50px;
+        margin-left: 330px;
+        margin-top: 80px;
+        margin-right: 295px;
+        position: relative;
+    }
+
+    /* banner2 설정 */
+    .banner2 {
+        margin-top: 200px;
+        width: 650px; /* 좌우 20px씩 마진을 두고 전체 너비 조정 */
+        height: 200px;
+        margin-left: 20px;
+        border-radius: 20px;
+    }
+
+    .banner2 > div {
+        width: 100%; /* 슬라이드의 너비를 부모의 100%로 설정 */
+        height: 200px;
+    }
+
+    /* 슬라이드 이미지 크기 조정 */
+    .b1, .b2, .b3, .b4, .b5 {
+        background-size: 100% 200px;
+    }
+
+    /* main3 설정 */
+    .main3{
+        width:768px;
+        margin-bottom: 50px;
+    }
+    .f1{
+        margin-top:40px;
+        width:768px;
+        height:200px;
+        margin-left:30px;
+    }
+    .f1>a{
+        margin:0px;
+        width:180px;
+        height:180px;
+
+
+    }
+
+    .g1>div>h3{
+
+        font-size:13px;
+    }
+    .g1{
+        width: 180px !important;
+        height: 180px !important;
+
+    }
+    .average-stars-2>span{
+
+        font-size:10px;
+    }
+    .main3>h1{
+        margin-left:20px;
+        font-size:15px;
+
+    }
+
+    .g1 > .g1-img1,
+        .g1 > .g1-img2,
+        .g1 > .g1-img3,
+        .g1 > .g1-img4,
+        .g1 > .g1-img5,
+        .g1 > .g1-img6,
+        .g1 > .g1-img7,
+        .g1 > .g1-img8 {
+            width: 100px;
+            height: 100px;
+            background-size: cover;
+            border-radius: 20px;
+    }
+
+}
+

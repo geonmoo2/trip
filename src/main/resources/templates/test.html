@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>본인 인증 테스트</title>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+</head>
+<body>
+
+<button onclick="requestIdentityVerification()">본인 인증하기</button>
+
+<script>
+    IMP.init("{imp34512017}");
+
+
+
+    function requestIdentityVerification() {
+      IMP.certification(
+  {
+    /* ...중략... */
+  },
+  function (rsp) {
+    // callback
+    if (rsp.success) {
+      // 인증 성공 시
+      // jQuery로 HTTP 요청
+      jQuery.ajax({
+        url: "{서버의 인증 정보를 받는 endpoint}",
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        data: { imp_uid: rsp.imp_uid },
+      });
+    } else {
+      alert("인증에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+    }
+  },
+);
+1    }
+</script>
+
+</body>
+</html>
