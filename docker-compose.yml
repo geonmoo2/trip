@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
+    depends_on:
+      - mysql-container
     ports:
       - "8080:8080"
     environment:
@@ -17,4 +19,7 @@ services:
 
 networks:
   new-network:
-    external: true  # 외부 네트워크를 사용
+    external: true
+
+  mysql-container:
+    external: true  # 이미 존재하는 컨테이너로 사용
