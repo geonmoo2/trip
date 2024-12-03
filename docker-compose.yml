@@ -2,11 +2,7 @@ version: "3.8"
 
 services:
   mysql-container:
-    image: mysql:8.0
-    container_name: mysql-container
-    networks:
-      - new-network  # 기존 네트워크를 사용
-    external: true  # 외부에 이미 존재하는 컨테이너를 사용
+    external: true  # 이미 실행 중인 mysql-container를 사용
 
   new-spring:
     build:
@@ -26,4 +22,4 @@ services:
 
 networks:
   new-network:
-    external: true  # 기존 네트워크 사용
+    external: true  # 외부 네트워크를 사용
