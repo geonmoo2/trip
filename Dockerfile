@@ -1,22 +1,42 @@
 # Java 21 기반 Eclipse Temurin 이미지로 빌드
 FROM eclipse-temurin:21-jdk AS build
 
-# 작업 디렉토리 설정
+# Set the working directory
 WORKDIR /app
 
-# 프로젝트 복사
-COPY . /app
+# Copy the Gradle wrapper and build files
+COPY gradlew /app/gradlew
+COPY gradle /app/gradle
+COPY build.gradle /app/
+COPY settings.gradle /app/
 
-# gradlew 실행 권한 부여
-RUN chmod +x ./gradlew
+# Ensure the Gradle wrapper script has Unix line endings and is executable
+RUN apt-get update && apt-get install -y dos2unix \
+    && dos2unix /app/gradlew \
+    && chmod +x /app/gradlew \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# 프로젝트 빌드
-RUN ./gradlew clean build -x test --no-daemon
+# Download dependencies (using --no-daemon to prevent issues in CI/CD environments)
+RUN ./gradlew --no-daemon dependencies
 
-# 빌드 결과를 런타임 환경에 복사
+# Copy the source code
+COPY src /app/src
+
+# Clean and build the project (excluding tests)
+RUN ./gradlew clean build -x test --no-daemon --stacktrace --info
+
+# Step 2: Runtime Stage
 FROM eclipse-temurin:21-jdk AS runtime
-WORKDIR /app
-COPY --from=build /app/build/libs/*.jar app.jar
 
-# Java 애플리케이션 실행
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Set the working directory
+WORKDIR /app
+
+# Copy the built JAR file from the build stage
+COPY --from=build /app/build/libs/*.jar /app/sl.jar
+
+# Expose the port that the application will run on
+EXPOSE 8080
+
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "/app/sl.jar"]
