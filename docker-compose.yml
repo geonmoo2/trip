@@ -11,7 +11,7 @@ services:
       - "3306:3306"
     networks:
       - new-network
-    restart: unless-stopped 
+    restart: unless-stopped
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
       interval: 5s
@@ -24,14 +24,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: mysql-container
+    container_name: backend-container  # 컨테이너 이름 중복 방지
     depends_on:
-      new-mysql:
-        condition: service_healthy
+      - new-mysql  # 간단히 서비스 이름 참조
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
+      SPRING_DATASOURCE_URL: jdbc:mysql://new-mysql:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     networks:
@@ -39,12 +38,8 @@ services:
     restart: unless-stopped
 
 volumes:
-  mysql-data:
-    driver: local
-
-volumes:
   mysql-data:  # 익명 볼륨 선언
 
 networks:
-  git-actions-auto_my-network:
+  new-network:  # 하나의 네트워크 이름으로 통일
     driver: bridge
