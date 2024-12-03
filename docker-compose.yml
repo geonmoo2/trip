@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: new-spring
     depends_on:
-      # 종속 관계를 제거합니다. 기존 컨테이너와 연결만 합니다.
+      - mysql-container  # 리스트 형식으로 수정
     ports:
       - "8080:8080"
     environment:
@@ -19,4 +19,4 @@ services:
 
 networks:
   new-network:
-    external: true  # 기존 네트워크 사용
+    external: true
