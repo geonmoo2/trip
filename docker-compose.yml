@@ -1,21 +1,41 @@
-version: "3.8"
+version: '3.8'
 
 services:
-  new-spring:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: trip
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - new-network
+    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
+
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: new-spring
     ports:
       - "8080:8080"
     environment:
+      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
+    depends_on:
+      - mysql
     networks:
       - new-network
+    restart: unless-stopped  # 컨테이너가 중지되거나 재시작되지 않도록 설정
+
+volumes:
+  mysql-data:
+    driver: local
 
 networks:
-  new-network:
-    name: new-network  # 이미 존재하는 네트워크 이름 명시
-    external: true
+    new-network:
+    driver: bridge
