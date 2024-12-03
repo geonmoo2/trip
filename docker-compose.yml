@@ -1,36 +1,17 @@
 version: "3.8"
 
 services:
-  mysql-container:  # 이름을 실제 컨테이너 이름과 일치시킴
-    image: mysql:8.0
-    container_name: mysql-container  # 실제 컨테이너 이름과 일치
-    environment:
-      MYSQL_ROOT_PASSWORD: 1234
-      MYSQL_DATABASE: trip
-    ports:
-      - "3306:3306"
-    networks:
-      - new-network
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - mysql-data:/var/lib/mysql  # 익명 볼륨
-
   new-spring:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
     depends_on:
-      mysql-container:
-        condition: service_healthy
+      # 종속 관계를 제거합니다. 기존 컨테이너와 연결만 합니다.
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip  # 이름 변경
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     networks:
@@ -38,7 +19,4 @@ services:
 
 networks:
   new-network:
-    driver: bridge
-
-volumes:
-  mysql-data:
+    external: true  # 기존 네트워크 사용
