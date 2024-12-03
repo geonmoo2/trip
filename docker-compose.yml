@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  new-mysql:  # 수정: 서비스 이름 변경
+  mysql-container:
     image: mysql:8.0
-    container_name: new-mysql
+    container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
@@ -17,18 +17,18 @@ services:
       timeout: 5s
       retries: 5
 
-  new-spring:  # 수정: service 이름 통일
+  new-spring:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
     depends_on:
-      new-mysql:  # 수정: 참조 이름 일치
-        condition: service_healthy
+      mysql-container:
+        condition: service_healthy  # 헬스체크 기반 의존성
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://new-mysql:3306/trip  # 수정: 서비스 이름 반영
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     networks:
