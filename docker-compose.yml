@@ -3,7 +3,7 @@ version: "3.8"
 services:
   new-mysql:
     image: mysql:8.0
-    container_name: new-mysql
+    container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
