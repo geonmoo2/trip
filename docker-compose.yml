@@ -1,9 +1,9 @@
 version: "3.8"
 
 services:
-  new-mysql:
+  mysql-container:  # 이름을 실제 컨테이너 이름과 일치시킴
     image: mysql:8.0
-    container_name: new-mysql
+    container_name: mysql-container  # 실제 컨테이너 이름과 일치
     environment:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: trip
@@ -19,18 +19,18 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql  # 익명 볼륨
 
-  backend:
+  new-spring:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
     depends_on:
-      new-mysql:
+      mysql-container:
         condition: service_healthy
     ports:
       - "8080:8080"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://new-mysql:3306/trip
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-container:3306/trip  # 이름 변경
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
     networks:
@@ -41,4 +41,4 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:  # 익명 볼륨 선언
+  mysql-data:
