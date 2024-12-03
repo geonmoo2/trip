@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  new-mysql:  # 수정: service 이름 변경
+  new-mysql:  # 수정: 서비스 이름 변경
     image: mysql:8.0
     container_name: new-mysql
     environment:
@@ -12,18 +12,18 @@ services:
     networks:
       - new-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p1234"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-  backend:
+  new-spring:  # 수정: service 이름 통일
     build:
       context: .
       dockerfile: Dockerfile
     container_name: new-spring
     depends_on:
-      new-mysql:  # 수정: 참조 이름 변경
+      new-mysql:  # 수정: 참조 이름 일치
         condition: service_healthy
     ports:
       - "8080:8080"
