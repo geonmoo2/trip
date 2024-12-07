@@ -137,6 +137,10 @@ public class contentController {
     public ResponseEntity<String> deleteReview(@PathVariable("contentId") Long contentId,
                                                @PathVariable("reviewId") Long reviewId,
                                                @AuthenticationPrincipal UserDetails userDetails) {
+        log.info("DELETE Request Received - ContentId: {}, ReviewId: {}", contentId, reviewId);
+        log.info("UserDetails: {}", userDetails != null ? userDetails.getUsername() : "Anonymous");
+
+        
         try {
             log.info("Attempting to delete review. ContentId: {}, ReviewId: {}, User: {}",
                     contentId, reviewId, userDetails.getUsername());
