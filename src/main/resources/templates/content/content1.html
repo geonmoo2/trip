@@ -343,7 +343,7 @@ stars.forEach((star, index) => {
                     return;
                 }
 
-                fetch(`/content/${contentId}/review/${reviewId}`, {
+                fetch(`/content${contentId}/review/${reviewId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
