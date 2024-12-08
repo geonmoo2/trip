@@ -118,7 +118,7 @@
     }
 
     // 폼 유효성 검사
-    function validateForm(event) {
+    function validateForm() {
         const password = document.getElementById('password').value.trim();
         const phoneNumber = document.getElementById('phoneNumber').value.trim();
         const addr = document.getElementById('addr').value.trim();
@@ -129,7 +129,6 @@
         // 중복 확인 여부 체크
         if (!isUsernameDuplicateChecked) {
             alert('아이디 중복 확인을 해주세요.');
-            event.preventDefault();
             return false;
         }
 
@@ -137,7 +136,6 @@
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
         if (!passwordPattern.test(password)) {
             alert('비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.');
-            event.preventDefault();
             return false;
         }
 
@@ -145,19 +143,60 @@
         const phonePattern = /^010-\d{4}-\d{4}$/;
         if (!phonePattern.test(phoneNumber)) {
             alert('전화번호 형식이 잘못되었습니다. 예: 010-0000-0000');
-            event.preventDefault();
             return false;
         }
 
         // 주소 및 약관 확인
         if (!addr || !agreeTerms || !agreePrivacy) {
             alert('필수 정보를 입력하고 약관에 동의해주세요.');
-            event.preventDefault();
             return false;
         }
 
         return true;
     }
+
+    // 폼 제출 이벤트
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // 기본 제출 방지
+
+        if (!validateForm()) {
+            return; // 유효성 검사 실패 시 제출 중단
+        }
+
+        // 폼 데이터 수집
+        const formData = {
+            userName: document.getElementById('userName').value.trim(),
+            password: document.getElementById('password').value.trim(),
+            realname: document.getElementById('realname').value.trim(),
+            birth: document.getElementById('birth').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            phoneNumber: document.getElementById('phoneNumber').value.trim(),
+            addr: document.getElementById('addr').value.trim(),
+        };
+
+        // JSON 데이터 서버 전송
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('회원가입 성공');
+                window.location.href = '/login'; // 성공 시 로그인 페이지로 이동
+            } else {
+                return response.json().then(data => {
+                    alert(data.message);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('회원가입 중 오류 발생:', error);
+            alert('회원가입 중 문제가 발생했습니다.');
+        });
+    });
 
     // 전화번호 자동 포맷팅
     document.getElementById('phoneNumber').addEventListener('input', function(e) {
@@ -165,13 +204,6 @@
         if (number.length >= 11) {
             number = number.substr(0, 11);
             e.target.value = number.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-        }
-    });
-
-    // 폼 제출 이벤트
-    document.getElementById('registerForm').addEventListener('submit', function(e) {
-        if (!validateForm(e)) {
-            e.preventDefault();
         }
     });
 </script>
