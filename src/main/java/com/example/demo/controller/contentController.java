@@ -133,7 +133,7 @@ public class contentController {
         response.put("averageRating", averageRating);
         return response;
     }
-    @DeleteMapping("/content/{contentId}/review/{reviewId}")
+    @DeleteMapping("/{contentId}/review/{reviewId}")
     public ResponseEntity<String> deleteReview(@PathVariable("contentId") Long contentId,
                                                @PathVariable("reviewId") Long reviewId,
                                                @AuthenticationPrincipal UserDetails userDetails) {

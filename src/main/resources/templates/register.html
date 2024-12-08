@@ -13,212 +13,85 @@
 
     <!-- PortOne SDK V2 -->
     <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
-
-
 </head>
 <body>
 <th:block th:replace="~{fragments/nav :: navFragment}"></th:block>
 <main>
     <div class="m1">
-        <form action="/register" method="post">
+        <form id="registerForm" action="/register" method="post">
+            <!-- 아이디 입력 -->
             <div class="text-box4">
                 <label for="userName" class="subtittle">아이디</label>
                 <input type="text" class="form-control2" id="userName" name="userName" required>
-                <div>
-                    <button class="addr-btn" type="button" onclick="checkDuplicate()">중복 확인</button>
-                </div>
+                <button class="addr-btn" type="button" onclick="checkDuplicate()">중복 확인</button>
             </div>
+
+            <!-- 비밀번호 입력 -->
             <div class="text-box">
                 <label for="password" class="subtittle">비밀번호</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
+
+            <!-- 이름 입력 -->
             <div class="text-box">
                 <label for="realname" class="subtittle">이름</label>
                 <input type="text" class="form-control" id="realname" name="realname" required>
             </div>
+
+            <!-- 생년월일 -->
             <div class="text-box">
                 <label for="birth" class="subtittle">생년월일</label>
                 <input type="date" class="form-control" id="birth" name="birth" required>
             </div>
 
+            <!-- 이메일 입력 -->
             <div class="text-box">
                 <label for="email" class="subtittle">이메일</label>
                 <input type="email" class="form-control" id="email" name="email"
                        placeholder="example@email.com" required>
             </div>
+
+            <!-- 연락처 입력 -->
             <div class="text-box4">
                 <label for="phoneNumber" class="subtittle">연락처</label>
                 <input type="tel" class="form-control2" id="phoneNumber" name="phoneNumber"
                        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="010-0000-0000" required>
             </div>
+
+            <!-- 주소 입력 -->
             <div class="text-box4">
                 <label for="addr" class="subtittle">주소</label>
                 <input type="text" class="form-control2" id="addr" name="addr" required>
             </div>
+
+            <!-- 동의 체크박스 -->
             <div class="text-box3">
                 <div class="consent">
                     <input class="form-check-input" type="checkbox" id="agreeTerms" required>
-                    <label class="form-check-label" for="agreeTerms">
-                        서비스 이용약관에 동의합니다. *
-                    </label>
+                    <label class="form-check-label" for="agreeTerms">서비스 이용약관에 동의합니다. *</label>
                 </div>
                 <div class="consent">
                     <input class="form-check-input" type="checkbox" id="agreePrivacy" required>
-                    <label class="form-check-label" for="agreePrivacy">
-                        개인정보 처리방침에 동의합니다. *
-                    </label>
+                    <label class="form-check-label" for="agreePrivacy">개인정보 처리방침에 동의합니다. *</label>
                 </div>
             </div>
+
+            <!-- 버튼 -->
             <div class="text-box5">
                 <button type="submit" class="sign-up-btn">회원가입</button>
                 <button type="button" class="cancel-btn" onclick="location.href='/login'">취소</button>
             </div>
         </form>
-
     </div>
 </main>
 <th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-<script>
 
+<script>
     let isUsernameDuplicateChecked = false;
 
-    function validateUserId(userId) {
-
-       const userIdPattern = /^[a-zA-Z0-9]{5,20}$/;
-       return userIdPattern.test(userId);
-    }
-
-    function validateForm(event) {
-
-        if (!isUsernameDuplicateChecked) {
-            alert('아이디 중복 확인을 해주세요.');
-            event.preventDefault();
-            return false;
-        }
-
-
-
-
-        const userName = document.getElementById('userName').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const realname = document.getElementById('realname').value.trim();
-        const birth = document.getElementById('birth').value.trim();
-        const phoneNumber = document.getElementById('phoneNumber').value.trim();
-        const addr = document.getElementById('addr').value.trim();
-        const email = document.getElementById('email').value.trim();
-
-        //체크박스 상태 확인
-        const agreeTerms = document.getElementById('agreeTerms').checked;
-        const agreePrivacy = document.getElementById('agreePrivacy').checked;
-
-        //성별 선택 확인
-        const genderM = document.getElementById('genderM').checked;
-        const genderF = document.getElementById('genderF').checked;
-
-        if(!userName) {
-
-            alert('아이디를 입력해주세요.');
-            event.preventDefault();
-            return false;
-
-        }
-        if(!password) {
-
-            alert('비밀번호를 입력해주세요');
-            event.preventDefault();
-            return false;
-
-        }
-        if (!realname){
-            alert('이름을 입력해주세요.');
-            event.preventDefault();
-            return false;
-
-        }
-        if (!birth) {
-           alert('생년월일을 입력해주세요.');
-           event.preventDefault();
-           return false;
-       }
-       if (!genderM && !genderF) {
-           alert('성별을 선택해주세요.');
-           event.preventDefault();
-           return false;
-       }
-       if(!email) {
-        alert('이메일을 입력해주세요.');
-        event.preventDefault();
-        return false;
-       }
-
-       const phonePattern = /^010-\d{4}-\d{4}$/;
-       if(!phoneNumber) {
-        alert('전화번호를 입력해주세요');
-        event.preventDefault();
-        return false;
-
-       }
-
-       if(!addr) {
-
-        alert('주소를 입력해주세요.');
-        event.preventDefault();
-        return false;
-
-       }
-       if(!agreeTerms || !agreePrivacy) {
-        alert('필수 약관에 모두 동의해주세요.');
-        event.preventDefault();
-        return false;
-
-       }
-
-       //비밀번호 유효성 검사 (최소 8자, 영문 / 숫자 / 특수문자 포함)
-       const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-       if (!passwordPattern.test(password)) {
-           alert('비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 모두 포함해야 합니다.');
-           event.preventDefault();
-           return false;
-       }
-       if (!realname || realname.length < 2){
-           alert('이름을 2자 이상 입력해주세요.');
-           event.preventDefault();
-           return false;
-       }
-       // 이메일 형식 검사
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email)) {
-            alert('유효한 이메일 주소를 입력해주세요.');
-            event.preventDefault();
-            return false;
-        }
-
-
-       return true;
-
-    }
-    document.getElementById('phoneNumber').addEventListener('input',function(e) {
-
-        let number = e.target.value.replace(/-/g,'');
-        if (number.length >= 11){
-            number = number.substr(0,11);
-            e.target.value = number.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
-
-        }
-
-    });
-
-    document.getElementById('userName').addEventListener('input', function() {
-        isUsernameDuplicateChecked = false;
-        const duplicateButton = document.querySelector('.addr-btn');
-        duplicateButton.textContent = '중복 확인';
-        duplicateButton.style.backgroundColor = '';
-    });
-
+    // 아이디 중복 확인
     function checkDuplicate() {
         const userName = document.getElementById('userName').value.trim();
-        const duplicateButton = document.querySelector('.text-box4 .addr-btn'); // 중복 확인 버튼 선택자 수정
-
         if (!userName) {
             alert('아이디를 입력해주세요.');
             return;
@@ -229,67 +102,78 @@
             type: 'GET',
             data: { username: userName },
             success: function(result) {
-                console.log('서버 응답:', result);
                 if (result === 'duplicate') {
                     alert('이미 사용 중인 아이디입니다.');
                     isUsernameDuplicateChecked = false;
-                    duplicateButton.textContent = '중복 확인';
-                    duplicateButton.style.backgroundColor = '';
                 } else {
                     alert('사용 가능한 아이디입니다.');
                     isUsernameDuplicateChecked = true;
-                    duplicateButton.textContent = '확인 완료';
-                    duplicateButton.style.backgroundColor = '#4CAF50';
                 }
             },
-            error: function(xhr, status, error) {
-                console.log('Status:', status);
-                console.log('Error:', error);
-                console.log('Response:', xhr.responseText);
+            error: function() {
                 alert('중복 확인 중 오류가 발생했습니다.');
                 isUsernameDuplicateChecked = false;
             }
         });
     }
 
-    // form submit 이벤트 리스너 추가
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('form').addEventListener('submit', validateForm);
-    });
+    // 폼 유효성 검사
+    function validateForm(event) {
+        const password = document.getElementById('password').value.trim();
+        const phoneNumber = document.getElementById('phoneNumber').value.trim();
+        const addr = document.getElementById('addr').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const agreeTerms = document.getElementById('agreeTerms').checked;
+        const agreePrivacy = document.getElementById('agreePrivacy').checked;
 
-    <!--이메일 중복 확인 -->
-    document.querySelector('form').addEventListener('submit', async function (e) {
-        e.preventDefault(); // 기본 폼 제출 방지
+        // 중복 확인 여부 체크
+        if (!isUsernameDuplicateChecked) {
+            alert('아이디 중복 확인을 해주세요.');
+            event.preventDefault();
+            return false;
+        }
 
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
+        // 비밀번호 유효성 검사
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+        if (!passwordPattern.test(password)) {
+            alert('비밀번호는 8자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.');
+            event.preventDefault();
+            return false;
+        }
 
-        try {
-            const response = await fetch('/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
+        // 전화번호 형식 확인
+        const phonePattern = /^010-\d{4}-\d{4}$/;
+        if (!phonePattern.test(phoneNumber)) {
+            alert('전화번호 형식이 잘못되었습니다. 예: 010-0000-0000');
+            event.preventDefault();
+            return false;
+        }
 
-            if (response.ok) {
-                alert('회원가입 성공!');
-                window.location.href = '/user/login';
-            } else if (response.status === 409) {
-                const error = await response.json(); // 서버에서 JSON 메시지 읽기
-                alert(error.message || '중복된 정보로 인해 회원가입에 실패했습니다.');
-            } else {
-                const error = await response.json();
-                alert(error.message || '회원가입 중 문제가 발생했습니다.');
-            }
-        } catch (err) {
-            console.error('회원가입 중 오류:', err);
-            alert('서버와 통신 중 문제가 발생했습니다.');
+        // 주소 및 약관 확인
+        if (!addr || !agreeTerms || !agreePrivacy) {
+            alert('필수 정보를 입력하고 약관에 동의해주세요.');
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
+    }
+
+    // 전화번호 자동 포맷팅
+    document.getElementById('phoneNumber').addEventListener('input', function(e) {
+        let number = e.target.value.replace(/-/g, '');
+        if (number.length >= 11) {
+            number = number.substr(0, 11);
+            e.target.value = number.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
         }
     });
 
-
-
+    // 폼 제출 이벤트
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        if (!validateForm(e)) {
+            e.preventDefault();
+        }
+    });
 </script>
-
 </body>
 </html>

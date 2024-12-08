@@ -194,42 +194,50 @@
 <!-- 별점 선택을 위한 JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const slides = document.querySelectorAll('.slides img');
-    const buttons = document.querySelectorAll('.paginate .circle');
-    const btnPrev = document.getElementById('btn1');
-    const btnNext = document.getElementById('btn2');
+        const slides = document.querySelectorAll('.slides img');
+        const buttons = document.querySelectorAll('.paginate .circle');
+        const btnPrev = document.getElementById('btn1');
+        const btnNext = document.getElementById('btn2');
 
-    let currentIndex = 0;
-    function updateSlide(index) {
-        slides.forEach((slide, i) => slide.style.display = i == index ? 'block' : 'none');
-        buttons.forEach((button, i) => button.classList.toggle('selected' , i ===index));
+        let currentIndex = 0;
 
-    }
-    function showNextSlide() {
+        // 슬라이드 업데이트 함수
+        function updateSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none'; // 하나만 보이도록
+            });
+            buttons.forEach((button, i) => {
+                button.classList.toggle('selected', i === index); // 현재 버튼 활성화
+            });
+        }
 
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateSlide(currentIndex);
-
-    }
-    function showPrevSlide() {
-
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        updateSlide(currentIndex);
-    }
-    btnNext.addEventListener('click', showNextSlide);
-    btnPrev.addEventListener('click', showPrevSlide);
-
-    buttons.forEach((button, i)=>{
-        button.addEventListener('click', () => {
-            currentIndex = i;
+        // 다음 슬라이드 표시
+        function showNextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
             updateSlide(currentIndex);
+        }
 
+        // 이전 슬라이드 표시
+        function showPrevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlide(currentIndex);
+        }
+
+        // 버튼 클릭 이벤트
+        btnNext.addEventListener('click', showNextSlide);
+        btnPrev.addEventListener('click', showPrevSlide);
+
+        // 페이징 버튼 이벤트
+        buttons.forEach((button, i) => {
+            button.addEventListener('click', () => {
+                currentIndex = i;
+                updateSlide(currentIndex);
+            });
         });
 
-
+        // 슬라이드 초기화
+        updateSlide(currentIndex);
     });
-    updateContentSlide();
-});
 
 
 
